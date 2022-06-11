@@ -1,0 +1,8 @@
+{
+  "name": "SportOnSpot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "f5e58ceb"
+}
