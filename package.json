@@ -1,15 +1,16 @@
 {
   "name": "sport-on-spot",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Atanas Petrov",
+  "homepage": "https://instagram.com/atanaspp",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server": "json-server --watch db.json --port 5000"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/status-bar": "1.0.8",
     "@ionic/angular": "^6.1.9",
+    "json-server": "^0.17.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -62,5 +64,5 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.7.3"
   },
-  "description": "An Ionic project"
+  "description": "A Diplom Work Project"
 }
