@@ -8,6 +8,7 @@ import { AccountRoutingModule } from './account-routing.module';
 
 import { AccountComponent } from './account.component';
 import { ProfileHeaderComponent } from '../../components/profile/header/header.component';
+import { MatchrowComponent } from '../../components/profile/matchrow/matchrow.component';
 
 @NgModule({
 	imports: [
@@ -16,6 +17,6 @@ import { ProfileHeaderComponent } from '../../components/profile/header/header.c
 		IonicModule,
 		AccountRoutingModule
 	],
-	declarations: [AccountComponent, ProfileHeaderComponent]
+	declarations: [AccountComponent, ProfileHeaderComponent, MatchrowComponent]
 })
-export class AccountModule {}
+export class AccountModule { }

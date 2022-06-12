@@ -1,8 +1,40 @@
 {
-    "customers": [
+    "profiles": [
         {
-            "id": 1,
-            "name": "nasko"
+            "id": "nasi0",
+            "name": "Atanas Petrov",
+            "profileImageUrl": "https://placebeard.it/168x168"
+        },
+        {
+            "id": "moni0",
+            "name": "Milen Minchev",
+            "profileImageUrl": "https://placebeard.it/168x168"
+        },
+        {
+            "id": "nasi1",
+            "name": "Atanasko Petrov",
+            "profileImageUrl": "https://placebeard.it/168x168"
+        },
+        {
+            "id": "nasi2",
+            "name": "Atanas2 Petrov",
+            "profileImageUrl": "https://placebeard.it/168x168"
+        },
+        {
+            "id": "nasi3",
+            "name": "Atanas3 Petrov",
+            "profileImageUrl": "https://placebeard.it/168x168"
+        }
+    ],
+    "matches": [
+        {
+            "id": "match-1",
+            "homeTeamId": "team-1",
+            "guestTeamId": "team-2",
+            "finished": false,
+            "homeTeamScore": 2,
+            "guestTeamScore": 3,
+            "result": 2
         }
     ]
 }
