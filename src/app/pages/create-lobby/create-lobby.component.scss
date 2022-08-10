@@ -1,0 +1,44 @@
+.sport-icon {
+	margin-top: 12px;
+	font-size: 25px
+}
+
+.star-icon {
+	margin-top: 12px;
+	font-size: 15px
+}
+
+.sport-label {
+	margin-top: 0px;
+	margin-bottom: 12px;
+}
+
+.create-lobby-section-wrapper {
+	border-right: 1px solid rgba(0, 0, 0, 0.13);
+	border-top: 1px solid rgba(0, 0, 0, 0.13);
+	&:last-child {
+		border-right: none;
+	}
+	&__full-width {
+		border-top: 1px solid rgba(0, 0, 0, 0.13);
+	}
+}
+
+.create-lobby-section__large {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: calc((var(--page-content-width) - 20px) / 3);
+}
+
+.create-lobby-game-length {
+	max-width: none;
+	width: 100%;
+	text-align: center;
+	&--icon {
+		position: absolute;
+	}
+}
+
+.create-lobby-icon {
+	font-size: 20px;
+}

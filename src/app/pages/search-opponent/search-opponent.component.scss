@@ -1,0 +1,39 @@
+.search-opponent__sport-icon {
+	margin-top: 12px;
+	font-size: 25px
+}
+
+.search-opponent__sport-label {
+	margin-top: 0px;
+	margin-bottom: 12px;
+}
+
+.search-opponent__buttons-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.search-opponent__icon {
+	margin: 0 4px;
+	font-size: 20px;
+}
+
+.search-opponent__filter-wrapper {
+	&.first-item {
+		border-right: 1px solid;
+		border-color: rgba(0, 0, 0, 0.13);
+	}
+
+	width: 50%;
+	padding: 0 16px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+.found-team-stats {
+	padding: 0 8px;
+	border-left: 1px solid;
+	border-color: rgba(0, 0, 0, 0.13);
+	&:first-child {
+		border-left: none;
+	}
+}

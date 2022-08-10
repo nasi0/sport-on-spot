@@ -1,40 +1,174 @@
 {
-    "profiles": [
-        {
-            "id": "nasi0",
-            "name": "Atanas Petrov",
-            "profileImageUrl": "https://placebeard.it/168x168"
-        },
-        {
-            "id": "moni0",
-            "name": "Milen Minchev",
-            "profileImageUrl": "https://placebeard.it/168x168"
-        },
-        {
-            "id": "nasi1",
-            "name": "Atanasko Petrov",
-            "profileImageUrl": "https://placebeard.it/168x168"
-        },
-        {
-            "id": "nasi2",
-            "name": "Atanas2 Petrov",
-            "profileImageUrl": "https://placebeard.it/168x168"
-        },
-        {
-            "id": "nasi3",
-            "name": "Atanas3 Petrov",
-            "profileImageUrl": "https://placebeard.it/168x168"
-        }
-    ],
-    "matches": [
-        {
-            "id": "match-1",
-            "homeTeamId": "team-1",
-            "guestTeamId": "team-2",
-            "finished": false,
-            "homeTeamScore": 2,
-            "guestTeamScore": 3,
-            "result": 2
-        }
-    ]
+	"profiles": [
+		{
+			"id": "nasi0",
+			"name": "Atanas Petrov",
+			"profileImageUrl": "https://placebeard.it/168x168",
+			"pastMatches": [
+				"match-1",
+				"match-2",
+				"match-3"
+			],
+			"nextMatches": []
+		},
+		{
+			"id": "kach0",
+			"name": "Kacho Isusov",
+			"profileImageUrl": "https://placebeard.it/168x168?asd"
+		},
+		{
+			"id": "nasi1",
+			"name": "Atanasko Petrov",
+			"profileImageUrl": "https://placebeard.it/168x168?re"
+		},
+		{
+			"id": "nasi2",
+			"name": "Atanas2 Petrov",
+			"profileImageUrl": "https://placebeard.it/168x168?fre"
+		},
+		{
+			"id": "nasi3",
+			"name": "Atanas3 Petrov",
+			"profileImageUrl": "https://placebeard.it/168x168?hy"
+		},
+		{
+			"id": "nasi02",
+			"name": "Atanas3 Petrov",
+			"profileImageUrl": "https://placebeard.it/168x168?u"
+		}
+	],
+	"matches": [
+		{
+			"id": "match-1",
+			"homeTeamId": "team-1",
+			"guestTeamId": "team-2",
+			"finished": false,
+			"homeTeamScore": 2,
+			"guestTeamScore": 3,
+			"result": 2
+		},
+		{
+			"id": "match-2",
+			"homeTeamId": "team-1",
+			"guestTeamId": "team-2",
+			"finished": false,
+			"homeTeamScore": 2,
+			"guestTeamScore": 3,
+			"result": 1
+		},
+		{
+			"id": "match-3",
+			"homeTeamId": "team-1",
+			"guestTeamId": "team-2",
+			"finished": false,
+			"homeTeamScore": 2,
+			"guestTeamScore": 3,
+			"result": 2
+		},
+		{
+			"id": "match-4",
+			"homeTeamId": "team-1",
+			"guestTeamId": "team-2",
+			"finished": false,
+			"homeTeamScore": 2,
+			"guestTeamScore": 3,
+			"result": 2
+		}
+	],
+	"teams": [
+		{
+			"id": "team-1",
+			"name": "Manchester United",
+			"players": [
+				"nasi0",
+				"kach0",
+				"nasi02",
+				"nasi1"
+			],
+			"ownerId": "nasi0",
+			"winsCount": 3,
+			"drawsCount": 1,
+			"losesCount": 2,
+			"stars": 3
+		},
+		{
+			"id": "team-2",
+			"name": "Real Madrid",
+			"players": [
+				"nasi0",
+				"kach0",
+				"nasi2"
+			],
+			"ownerId": "kach0",
+			"winsCount": 3,
+			"drawsCount": 1,
+			"losesCount": 2,
+			"stars": 5
+		},
+		{
+			"id": "team-3",
+			"name": "Liverpool",
+			"players": [
+				"nasi0",
+				"kach0",
+				"nasi02",
+				"nasi1"
+			],
+			"ownerId": "nasi1",
+			"winsCount": 3,
+			"drawsCount": 1,
+			"losesCount": 2,
+			"stars": 5
+		},
+		{
+			"id": "frefre-4069304",
+			"name": "frefre",
+			"players": [
+				"nasi0"
+			]
+		},
+		{
+			"id": "-4050300",
+			"name": "фев",
+			"players": [
+				"nasi0"
+			]
+		},
+		{
+			"id": "asda-7732168",
+			"name": "asda",
+			"players": [
+				"nasi3",
+				"nasi1",
+				"nasi3",
+				"kach0"
+			]
+		}
+	],
+	"sports" : [
+		{
+			"id": "football",
+			"name": "football",
+			"icon": "faFutbol",
+			"gameParts": [
+				"2x30min", "2x45min"
+			]
+		},
+		{
+			"id": "volleyball",
+			"name": "volleyball",
+			"icon": "faVolleyball",
+			"gameParts": [
+				"3of5", "2of3"
+			]
+		},
+		{
+			"id": "basketball",
+			"name": "basketball",
+			"icon": "faBasketball",
+			"gameParts": [
+				"2x30min", "2x45min", "2x45min", "2x45min", "2x45min", "2x45min"
+			]
+		}
+	]
 }

@@ -1,0 +1,109 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> Create Lobby </ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<div class="page-content-wrapper">
+		<ion-card>
+			<ion-card-header color="primary">
+				<ion-card-title>Lobby specifics</ion-card-title>
+			</ion-card-header>
+			<ion-segment class="create-lobby-section-wrapper__full-width" (ionChange)="onSportChanged($event)"
+				scrollable color="secondary">
+				<ion-segment-button *ngFor="let item of sports" value="{{item.name}}">
+					<fa-icon class="sport-icon" [icon]="icons[item.icon]"></fa-icon>
+					<ion-label class="sport-label">{{item.name}}</ion-label>
+				</ion-segment-button>
+			</ion-segment>
+
+			<ion-segment class="create-lobby-section-wrapper__full-width" (ionChange)="onTeamChanged($event)" scrollable
+				color="secondary">
+				<ion-segment-button *ngFor="let team of myTeams" value="{{team.name}}">
+					<ion-label class="ion-no-margin">
+						<ion-icon *ngFor="let star of [1,2,3,4,5]; let i = index"
+							class="search-opponent__icon star-icon " name="{{i<team.stars? 'star' : 'star-outline'}}">
+						</ion-icon>
+					</ion-label>
+					<ion-label class="sport-label">{{team.name}}</ion-label>
+				</ion-segment-button>
+			</ion-segment>
+
+
+
+			<div class="display-flex-center flex-wrap">
+				<ion-item class="create-lobby-section-wrapper first-item create-lobby-section__large" lines="none">
+
+					<ion-icon slot="start" class="create-lobby-icon" name="location-outline" color="medium">
+					</ion-icon>
+					<ion-label>
+						Court available
+					</ion-label>
+					<ion-toggle color="secondary" [(ngModel)]="hasSpot"></ion-toggle>
+				</ion-item>
+
+				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
+					<ion-label>
+						<ion-icon class="create-lobby-icon" name="calendar-outline" color="medium">
+						</ion-icon>
+					</ion-label>
+					<ion-input value="{{ date | date: 'dd MMM hh:mm a' }}" id="date" placeholder="Select Date"
+						class="ion-text-center " color="dark"></ion-input>
+					<ion-popover trigger="date" size="auto" side="right">
+						<ng-template>
+							<ion-datetime minuteValues="0,15,30,45" presentation="time-date" [firstDayOfWeek]="1"
+								[(ngModel)]="date" [showDefaultButtons]="true" color="secondary">
+								<span slot="time-label">Start Time</span>
+
+							</ion-datetime>
+						</ng-template>
+					</ion-popover>
+				</ion-item>
+
+
+
+
+
+
+				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
+					<ion-label class="create-lobby-game-length--icon">
+						<ion-icon class="create-lobby-icon" name="stopwatch-outline" color="medium">
+						</ion-icon>
+					</ion-label>
+					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Game Length"
+						[(ngModel)]="selectedGamePart">
+						<ion-select-option value="0">
+							<ion-label color="secondary">Not specific</ion-label>
+						</ion-select-option>
+						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
+							<ion-label color="secondary">{{parts}}</ion-label>
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
+			</div>
+
+
+
+
+
+
+			<!-- <div class="display-flex-center ion-padding-horizontal">
+				<ion-item class="create-lobby-section-wrapper first-item create-lobby-section__small" lines="none">
+				</ion-item>
+				<ion-item class="create-lobby-section-wrapper create-lobby-section__small" lines="none">
+				</ion-item>
+			</div> -->
+		</ion-card>
+
+		<div class="display-flex-center">
+			<ion-button color="primary">Create Lobby</ion-button>
+		</div>
+
+	</div>
+
+
+</ion-content>

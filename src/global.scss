@@ -25,6 +25,10 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+:root {
+	--page-content-width: 820px;
+}
+
 .text-bold {
 	font-weight: bolder;
 	text-decoration: underline;
@@ -36,3 +40,61 @@
 	justify-content: center;
 	align-content: center;
 }
+
+.display-flex-center-evenly {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.page-content-wrapper {
+	max-width: var(--page-content-width);
+	margin: 0 auto;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.half-width {
+	width: 33%;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--ion-color-light);//#fff;
+}
+
+::-webkit-scrollbar-track:hover {
+	background: var(--ion-color-light-shade);//#f7f7f7;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--ion-color-medium);//#ccc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--ion-color-medium-shade);//#888
+}
+
+.inner-scroll {
+	scrollbar-width: thin
+}
+
+ion-menu {
+	--side-min-width: 240px;
+	--side-max-width: 0;
+}
+
+ion-card-title {
+	font-size: 16px;
+}
+
+

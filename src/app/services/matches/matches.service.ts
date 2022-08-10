@@ -17,11 +17,11 @@ export class MatchService {
 
   constructor(private http: HttpClient) {}
 
-  getMatch(MatchId: string): Observable<Match[]> {
+  getMatch(MatchId: string): Observable<Match> {
     const url = `${this.apiUrl}/${MatchId}`;
-    return this.http.get<Match[]>(url);
+    return this.http.get<Match>(url);
   }
-
+/*
   deleteTask(task: Match): Observable<Match> {
     const url = `${this.apiUrl}/${task.id}`;
     return this.http.delete<Match>(url);
@@ -34,5 +34,5 @@ export class MatchService {
 
   addTask(task: Match): Observable<Match> {
     return this.http.post<Match>(this.apiUrl, task, httpOptions);
-  }
+  } */
 }

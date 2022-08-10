@@ -1,0 +1,25 @@
+<div *ngIf="!selectedProfile" class="search-profile-container">
+	<ion-item color="light"  lines="none">
+		<ion-input placeholder="Team Member" color="dark" [(ngModel)]="nasko"></ion-input>
+	</ion-item>
+	<div>
+		<ion-list class="search-profile-results ion-no-padding"
+			[ngClass]="nasko.length > 0 ? 'active-results' : 'not-active-results'">
+			<ion-item *ngFor="let profile of profiles | filter: nasko" (click)="onClick(profile)">
+				<ion-avatar>
+					<img [src]="profile.profileImageUrl" />
+				</ion-avatar>
+				<ion-label class="ion-padding-horizontal">{{profile.name}}</ion-label>
+			</ion-item>
+		</ion-list>
+	</div>
+</div>
+<ion-card *ngIf="selectedProfile" class="ion-no-margin ion-margin-vertical">
+	<ion-item color="light" lines="none">
+		<ion-avatar>
+			<img [src]="selectedProfile.profileImageUrl" />
+		</ion-avatar>
+		<ion-label class="ion-padding-horizontal">{{selectedProfile.name}}</ion-label>
+		<ion-button slot="end" (click)="clearSelected(selectedProfile)"> <ion-icon name="close-outline"></ion-icon> </ion-button>
+	</ion-item>
+</ion-card>

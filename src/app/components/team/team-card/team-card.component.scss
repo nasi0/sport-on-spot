@@ -1,0 +1,17 @@
+.my-teams-card {
+	flex-basis: 385px;
+	flex-grow: 0;
+	flex-shrink: 1;
+	margin: 5px;
+
+	.team-card-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.team-card-content {
+		max-height: 200px;
+		overflow: auto;
+	}
+}

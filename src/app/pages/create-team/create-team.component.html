@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> Homepage </ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<div class="page-content-wrapper">
+		<div class="display-flex-center">
+			<ion-card class="create-team-card">
+				<ion-card-header color="primary">
+					<ion-card-title>Create New Team</ion-card-title>
+				</ion-card-header>
+
+				<ion-card-content>
+					<ion-item color="light" class="ion-margin-vertical">
+						<ion-input placeholder="New Team's Name" color="dark" [(ngModel)]="teamName"></ion-input>
+					</ion-item>
+
+					<!-- Current Customer Profile -->
+					<ion-card class="ion-no-margin ion-margin-vertical">
+						<ion-item color="light" lines="none">
+							<ion-avatar>
+								<img [src]="currentProfile.profileImageUrl" />
+							</ion-avatar>
+							<ion-label class="ion-padding-horizontal">{{currentProfile.name}}</ion-label>
+							<ion-label slot="end" class="ion-padding-horizontal">Owner</ion-label>
+						</ion-item>
+					</ion-card>
+
+					<app-search-profile *ngFor="let slot of desiredSlots" (onSelectProfile)="selectProfile($event)"
+						(onDeselectProfile)="deselectProfile($event)">
+					</app-search-profile>
+
+					<ion-button size="small" color="secondary" (click)="addNewSlot()"><i>+ add new slot</i></ion-button>
+				</ion-card-content>
+				<div class="display-flex-center">
+					<ion-button [disabled]="teamName === undefined" (click)="createTeam()">Create Team</ion-button>
+				</div>
+			</ion-card>
+		</div>
+	</div>
+</ion-content>

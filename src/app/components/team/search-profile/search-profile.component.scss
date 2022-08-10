@@ -1,0 +1,14 @@
+.search-profile-results {
+	&.active-results {
+		max-height: 275px;
+
+	}
+
+	max-height: 0;
+	overflow-y: scroll;
+	transition: all 0.3s
+}
+
+.search-profile-container {
+	padding: 8px 0;
+}

@@ -4,29 +4,37 @@
 			<ion-buttons slot="start">
 				<ion-menu-button></ion-menu-button>
 			</ion-buttons>
-			<ion-title> My Account - {{profile.name || ''}} </ion-title>
+			<ion-title>{{profile.name || ''}} </ion-title>
 		</ion-toolbar>
 	</ion-header>
 
 	<ion-content [fullscreen]="true">
-		<app-profile-header [profile]="profile"></app-profile-header>
-		<ion-card>
-			<ion-list>
-				<ion-list-header> Next Games </ion-list-header>
-				<div *ngFor="let match of matches">
-					<app-matchrow [match]="match"></app-matchrow>
-				</div>
-			</ion-list>
-		</ion-card>
+		<div class="page-content-wrapper">
+			<app-profile-header [profile]="profile"></app-profile-header>
+			<ion-card>
+				<ion-card-header>
+					<ion-card-title>Next Games</ion-card-title>
+				</ion-card-header>
+				<ion-card-content class="ion-no-padding">
+					<div *ngFor="let match of matches">
+						<app-matchrow [match]="match"></app-matchrow>
+					</div>
 
-		<ion-card>
-			<ion-list>
-				<ion-list-header> Recent Games </ion-list-header>
-				<div *ngFor="let match of matches">
-					<app-matchrow [match]="match"></app-matchrow>
-				</div>
-			</ion-list>
-		</ion-card>
+				</ion-card-content>
+			</ion-card>
+
+			<ion-card>
+				<ion-card-header>
+					<ion-card-title>Recent Games</ion-card-title>
+				</ion-card-header>
+				<ion-card-content class="ion-no-padding">
+					<div *ngFor="let match of matches">
+						<app-matchrow [match]="match"></app-matchrow>
+					</div>
+
+				</ion-card-content>
+			</ion-card>
+		</div>
 	</ion-content>
 </div>
 <div *ngIf="!isDataLoaded" class="profile-not-found__container">

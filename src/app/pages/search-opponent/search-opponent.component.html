@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> Search Opponent </ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+	<div class="page-content-wrapper">
+		<ion-card>
+			<ion-card-header color="primary">
+				<ion-card-title>Select filters</ion-card-title>
+			</ion-card-header>
+
+			<div class="display-flex-center ion-padding-horizontal">
+				<div class="search-opponent__filter-wrapper first-item">
+					<ion-item class="ion-no-padding " lines="none">
+						<ion-label color="secondary" class="nasko ion-no-margin">
+							Maximum distance:
+						</ion-label>
+						<ion-label slot="end" color="secondary" class="nasko ion-no-margin">
+							{{search.range}} km
+						</ion-label>
+					</ion-item>
+					<div>
+						<ion-range ticks="true" min="1" max="50" step="1" snaps="false" color="secondary"
+							[pinFormatter]="customFormatter" [pin]="true" (ionChange)="onRangeChange($event)"
+							class="ion-no-padding">
+						</ion-range>
+					</div>
+				</div>
+				<div class="search-opponent__filter-wrapper">
+					<ion-item class="ion-no-padding " lines="none">
+						<ion-label color="secondary" class="nasko ion-no-margin">
+							Maximum distance:
+						</ion-label>
+						<ion-label slot="end" color="secondary" class="nasko ion-no-margin">
+							{{search.range}} km
+						</ion-label>
+					</ion-item>
+					<div>
+						<ion-range ticks="true" min="1" max="50" step="1" snaps="false" color="secondary"
+							[pinFormatter]="customFormatter" [pin]="true" (ionChange)="onRangeChange($event)"
+							class="ion-no-padding">
+						</ion-range>
+					</div>
+				</div>
+			</div>
+
+			<ion-segment (ionChange)="onSportChanged($event)" scrollable color="secondary">
+				<ion-segment-button *ngFor="let item of sports" value="{{item.name}}">
+					<fa-icon class="search-opponent__sport-icon" [icon]="icons[item.icon]"></fa-icon>
+					<ion-label class="search-opponent__sport-label">{{item.name}}</ion-label>
+				</ion-segment-button>
+			</ion-segment>
+		</ion-card>
+
+
+
+
+		<ion-list>
+			<ion-item-divider>
+				<ion-label>
+					Found {{foundOpponents.length}} opponents
+				</ion-label>
+			</ion-item-divider>
+
+
+			<ion-item *ngFor="let item of foundOpponents">
+				<div>Manchester United</div>
+				<div class="display-flex-center ion-margin-horizontal">
+					<div class="found-team-stats display-flex-center found-team-stats__first-item">
+						5 <ion-icon class="search-opponent__icon" name="people-outline"></ion-icon>
+					</div>
+					<div class="found-team-stats display-flex-center">
+						90 <ion-icon class="search-opponent__icon" name="time-outline"></ion-icon>
+					</div>
+					<div class="found-team-stats display-flex-center">
+						21-1-3 <ion-icon class="search-opponent__icon" name="stats-chart-outline"></ion-icon>
+					</div>
+					<div class="found-team-stats display-flex-center found-team-stats__first-item">
+						<ion-icon *ngFor="let item of foundOpponents; let i=index"  name="star"></ion-icon>
+					</div>
+				</div>
+				<div slot="end">
+					<ion-button>challenge</ion-button>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>

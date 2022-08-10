@@ -1,13 +1,26 @@
 <ion-card>
-	<ion-card-header>
-		<ion-item>
-			<ion-thumbnail slot="start">
-				<ion-img [src]="profile.profileImageUrl"></ion-img>
-			</ion-thumbnail>
-			<ion-text>{{ profile.name }}</ion-text>
-	</ion-item>
-		<ion-card-subtitle></ion-card-subtitle>
-	</ion-card-header>
+	<div class="profile-header-block ">
+		<ion-card class="profile-header-block-thumbnail display-flex-center-evenly" slot="start">
+			<ion-img [src]="profile.profileImageUrl"></ion-img>
+		</ion-card>
+
+
+		<ion-card class="profile-header-block-card ">
+			<ion-card-header>
+				<ion-card-title>Atanas Petrov</ion-card-title>
+			</ion-card-header>
+			<ion-item lines="none">
+				<ion-label>450 friends</ion-label>
+				450 friends
+			</ion-item>
+		</ion-card>
+
+		<ion-card class="profile-header-block-card">
+			<ion-card-header>
+				<ion-card-title>Joined Teams</ion-card-title>
+			</ion-card-header>
+		</ion-card>
+	</div>
 
 	<ion-card-content>
 		Keep close to Nature's heart... and break clear away, once in awhile,

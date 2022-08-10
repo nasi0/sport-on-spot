@@ -22,7 +22,7 @@ export class ProfileService {
     return this.http.get<Profile>(url);
   }
 
-  deleteTask(task: Profile): Observable<Profile> {
+/*   deleteTask(task: Profile): Observable<Profile> {
     const url = `${this.apiUrl}/${task.id}`;
     return this.http.delete<Profile>(url);
   }
@@ -34,5 +34,5 @@ export class ProfileService {
 
   addTask(task: Profile): Observable<Profile> {
     return this.http.post<Profile>(this.apiUrl, task, httpOptions);
-  }
+  } */
 }
