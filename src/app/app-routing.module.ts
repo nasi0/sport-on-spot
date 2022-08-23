@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 import { HomepageComponent } from './pages/homepage/homepage.component'
 import { CreateTeamComponent } from './pages/create-team/create-team.component';
 import { MyTeamsComponent } from './pages/my-teams/my-teams.component';
 import { SearchOpponentComponent } from './pages/search-opponent/search-opponent.component';
 import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
 	{
@@ -39,7 +42,16 @@ const routes: Routes = [
 	{
 		path: 'create-lobby',
 		component: CreateLobbyComponent
+	},
+	{
+		path: 'login',
+		component: LoginComponent
+	},
+	{
+		path: 'register',
+		component: RegisterComponent
 	}
+
 ];
 
 @NgModule({

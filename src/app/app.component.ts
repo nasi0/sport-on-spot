@@ -11,9 +11,11 @@ export class AppComponent {
     { title: 'My Teams', url: '/my-teams', icon: 'heart' },
     { title: 'Search Opponent', url: '/search-opponent', icon: 'search' },
     { title: 'Create Lobby', url: '/create-lobby', icon: 'search' },
+    { title: 'Login', url: '/login', icon: 'log-in' },
+    { title: 'Register', url: '/register', icon: 'log-in' },
     { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = ['Family', 'Friends'];
   constructor() {}
 }

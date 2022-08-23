@@ -8,21 +8,37 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-	<div class="page-content-wrapper">
-		<div class="homepage-content__wrapper">
-			<ion-card class="homepage-content__card">
-				You have a team and searching for opponent?
-				<ion-button>Search Oponent</ion-button>
+	<div class="page-content-wrapper homepage-content__wrapper ">
+
+
+
+		<h2 class="homepage-content__title">Hello, Nasko!</h2>
+		<div class="homepage-content__subtitle">Welcome to Sport-on-Spot Home.</div>
+
+
+
+
+
+
+		<div class="homepage-content__card-wrapper display-flex-center flex-wrap">
+			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
+				<ion-label class="homepage-content__label">You have a team and searching for opponent?</ion-label>
+				<ion-button [routerLink]="['/create-lobby']" class="ion-margin-bottom">Create Lobby</ion-button>
 			</ion-card>
 
-			<ion-card class="homepage-content__card">
-				Are you searching for a game?
-				<ion-button>Search</ion-button>
+			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
+				<ion-label class="homepage-content__label">You don't have a team?</ion-label>
+				<ion-button [routerLink]="['/create-team']" class="ion-margin-bottom">Create Team</ion-button>
 			</ion-card>
 
-			<ion-card class="homepage-content__card">
-				Are you searching for a game?
-				<ion-button>Search</ion-button>
+			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
+				<ion-label class="homepage-content__label">Are you searching for a game?</ion-label>
+				<ion-button [routerLink]="['/search-opponent']" class="ion-margin-bottom">Search Opponent</ion-button>
+			</ion-card>
+
+			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
+				<ion-label class="homepage-content__label">Are you searching for a game?</ion-label>
+				<ion-button [routerLink]="['/search-opponent']" class="ion-margin-bottom">Search Opponent</ion-button>
 			</ion-card>
 		</div>
 	</div>

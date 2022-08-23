@@ -1,0 +1,27 @@
+.divider {
+	display: flex;
+	align-items: center; // align text and lines vertically
+}
+
+.divider::before,
+.divider::after {
+	content: '';
+	height: 1px;
+	background-color: silver;
+	flex-grow: 1; // both lines will expand to occupy the available space
+}
+
+.divider:not(.lines-only) {
+	&:before {
+		margin-right: 8px;
+	}
+
+	&:after {
+		margin-left: 8px;
+	}
+}
+
+.forgot-password-link {
+	display: block;
+	text-align: end;
+}

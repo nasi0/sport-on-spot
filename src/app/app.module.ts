@@ -3,7 +3,7 @@ import { RouteReuseStrategy } from '@angular/router';
 /** Modules */
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,8 @@ import { SearchOpponentComponent } from './pages/search-opponent/search-opponent
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TeamComponent } from './pages/team/team.component';
 import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.componen
 		TeamCardComponent,
 		SearchOpponentComponent,
 		TeamComponent,
-		CreateLobbyComponent
+		CreateLobbyComponent,
+		LoginComponent,
+		RegisterComponent
 	],
 	imports: [
 		BrowserModule,
@@ -40,6 +44,7 @@ import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.componen
 		AppRoutingModule,
 		HttpClientModule,
 		FormsModule,
+		ReactiveFormsModule,
 		Ng2SearchPipeModule,
   		FontAwesomeModule
 	],

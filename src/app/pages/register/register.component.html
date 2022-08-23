@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> Register </ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<div class="page-content-wrapper page-content-wrapper--compact">
+		<form class="ion-margin-vertical" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+			<ion-item lines="full">
+				<ion-label position="floating">First Name</ion-label>
+				<ion-input type="text" formControlName="firstname"></ion-input>
+			</ion-item>
+			<ion-item lines="full">
+				<ion-label position="floating">Last Name</ion-label>
+				<ion-input type="text" formControlName="lastname"></ion-input>
+			</ion-item>
+			<ion-item lines="full">
+				<ion-label position="floating">Email</ion-label>
+				<ion-input type="email" formControlName="email"></ion-input>
+			</ion-item>
+			<ion-item lines="full">
+				<ion-label position="floating">Password</ion-label>
+				<ion-input type="password" formControlName="password"></ion-input>
+			</ion-item>
+			<ion-row class="ion-margin-top">
+				<ion-col class="ion-no-padding">
+					<ion-button class="ion-margin-top" type="submit" color="primary" expand="block"
+						[disabled]="!registerForm.valid">Create Account</ion-button>
+				</ion-col>
+			</ion-row>
+		</form>
+		<div class="ion-text-center ion-margin-vertical">Have an account? <a class="ion-margin-vertical"
+				[routerLink]="['/login']" expand="block" color="secondary">Sign in
+			</a></div>
+	</div>
+</ion-content>

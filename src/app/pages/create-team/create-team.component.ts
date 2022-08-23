@@ -12,8 +12,10 @@ import { generate } from 'rxjs';
 export class CreateTeamComponent implements OnInit {
 
 	currentProfile: Profile = {
-		"id": "nasi0",
-		"name": "Atanas Petrov",
+		'id': 'nasi0',
+		'firstname': 'Atanas',
+		'lastname': 'Petrov',
+		'email': 'nasi0.ap@gmail.com',
 		"profileImageUrl": "https://placebeard.it/168x168",
 		"pastMatches": [
 			"match-1",

@@ -26,7 +26,8 @@
 							<ion-avatar>
 								<img [src]="currentProfile.profileImageUrl" />
 							</ion-avatar>
-							<ion-label class="ion-padding-horizontal">{{currentProfile.name}}</ion-label>
+							<ion-label class="ion-padding-horizontal">{{currentProfile.firstname + ' ' +
+								currentProfile.lastname}}</ion-label>
 							<ion-label slot="end" class="ion-padding-horizontal">Owner</ion-label>
 						</ion-item>
 					</ion-card>

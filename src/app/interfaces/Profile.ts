@@ -1,8 +1,10 @@
 export interface Profile {
-	id?: string;
-	name: string;
-	profileImageUrl: string;
-	pastMatches: string[]
-	nextMatches: string[]
-	teams: string[]
+	id: string;
+	firstname: string;
+	lastname: string;
+	email: string;
+	profileImageUrl?: string;
+	pastMatches?: string[]
+	nextMatches?: string[]
+	teams?: string[]
 }

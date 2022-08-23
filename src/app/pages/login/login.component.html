@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> Login </ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<div class="page-content-wrapper page-content-wrapper--compact">
+		<form class="ion-margin-vertical" [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+			<ion-item lines="full">
+				<ion-label position="floating">Email</ion-label>
+				<ion-input type="email" formControlName="email"></ion-input>
+			</ion-item>
+			<ion-item lines="full">
+				<ion-label position="floating">Password</ion-label>
+				<ion-input type="password" formControlName="password"></ion-input>
+			</ion-item>
+			<ion-row class="ion-margin-top">
+				<ion-col class="ion-no-padding">
+					<a [routerLink]="['/forgot-password']" class="forgot-password-link">Forgot Password?</a>
+					<ion-button class="ion-margin-top" type="submit" color="primary" expand="block"
+						[disabled]="!loginForm.valid">Sign In</ion-button>
+				</ion-col>
+			</ion-row>
+		</form>
+
+
+		<div class="divider ion-margin-vertical">OR</div>
+		<div class="ion-text-center ion-margin-vertical">Don't have an account? <a [routerLink]="['/register']">Sign
+				up</a></div>
+
+	</div>
+</ion-content>

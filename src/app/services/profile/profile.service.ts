@@ -4,35 +4,39 @@ import { Observable } from 'rxjs';
 import { Profile } from '../../interfaces/profile';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+	headers: new HttpHeaders({
+		'Content-Type': 'application/json',
+	}),
 };
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class ProfileService {
-  private apiUrl = 'http://localhost:5000/profiles';
+	private apiUrl = 'http://localhost:5000/profiles';
 
-  constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 
-  getProfile(profileId: string): Observable<Profile> {
-    const url = `${this.apiUrl}/${profileId}`;
-    return this.http.get<Profile>(url);
-  }
+	getProfile(profileId: string): Observable<Profile> {
+		const url = `${this.apiUrl}/${profileId}`;
+		return this.http.get<Profile>(url);
+	}
 
-/*   deleteTask(task: Profile): Observable<Profile> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.delete<Profile>(url);
-  }
+	createProfile(profile: Profile): Observable<Profile> {
+		return this.http.post<Profile>(this.apiUrl, profile, httpOptions);
+	}
 
-  updateTaskReminder(task: Profile): Observable<Profile> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.put<Profile>(url, task, httpOptions);
-  }
+	/*   deleteTask(task: Profile): Observable<Profile> {
+		const url = `${this.apiUrl}/${task.id}`;
+		return this.http.delete<Profile>(url);
+	  }
 
-  addTask(task: Profile): Observable<Profile> {
-    return this.http.post<Profile>(this.apiUrl, task, httpOptions);
-  } */
+	  updateTaskReminder(task: Profile): Observable<Profile> {
+		const url = `${this.apiUrl}/${task.id}`;
+		return this.http.put<Profile>(url, task, httpOptions);
+	  }
+
+	  addTask(task: Profile): Observable<Profile> {
+		return this.http.post<Profile>(this.apiUrl, task, httpOptions);
+	  } */
 }
