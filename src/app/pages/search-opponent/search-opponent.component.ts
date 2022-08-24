@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faVolleyball, faFutbol, faBasketball } from '@fortawesome/free-solid-svg-icons'
 import { SportsService } from 'src/app/services/sports/sports.service';
 import { LobbiesService } from 'src/app/services/lobbies/lobbies.service';
+import { Lobby } from 'src/app/interfaces/Lobby';
 
 @Component({
 	selector: 'app-search-opponent',
@@ -10,6 +11,7 @@ import { LobbiesService } from 'src/app/services/lobbies/lobbies.service';
 })
 export class SearchOpponentComponent implements OnInit {
 	lobbies: any;
+	sports: any;
 
 	faVolleyball = faVolleyball;
 	faFutbol = faFutbol;
@@ -21,7 +23,6 @@ export class SearchOpponentComponent implements OnInit {
 		"faBasketball": faBasketball
 	}
 
-	sports: any;
 
 	foundOpponents = [
 		{}, {}, {}, {}
@@ -40,7 +41,6 @@ export class SearchOpponentComponent implements OnInit {
 
 	ngOnInit() {
 		this.sportsService.getAllSports().subscribe((sports) => this.sports = sports);
-		this.lobbiesService.getAllLobbies().subscribe((lobbies) => this.lobbies = lobbies);
 
 	}
 
@@ -53,8 +53,12 @@ export class SearchOpponentComponent implements OnInit {
 		this.search.range = (event as CustomEvent).detail.value;
 	}
 
+
+	searchOpponents() {
+		this.lobbiesService.getAllLobbies().subscribe((lobbies) => this.lobbies = lobbies);
+	}
+
 	public customFormatter(value: number) {
 		return `${value}km`
 	}
-
 }

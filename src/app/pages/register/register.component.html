@@ -11,20 +11,20 @@
 	<div class="page-content-wrapper page-content-wrapper--compact">
 		<form class="ion-margin-vertical" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
 			<ion-item lines="full">
+				<ion-label position="floating">Email</ion-label>
+				<ion-input type="email" formControlName="email" autocomplete="email username"></ion-input>
+			</ion-item>
+			<ion-item lines="full">
 				<ion-label position="floating">First Name</ion-label>
-				<ion-input type="text" formControlName="firstname"></ion-input>
+				<ion-input type="text" formControlName="firstname" autocomplete="given-name"></ion-input>
 			</ion-item>
 			<ion-item lines="full">
 				<ion-label position="floating">Last Name</ion-label>
-				<ion-input type="text" formControlName="lastname"></ion-input>
-			</ion-item>
-			<ion-item lines="full">
-				<ion-label position="floating">Email</ion-label>
-				<ion-input type="email" formControlName="email"></ion-input>
+				<ion-input type="text" formControlName="lastname" autocomplete="family-name"></ion-input>
 			</ion-item>
 			<ion-item lines="full">
 				<ion-label position="floating">Password</ion-label>
-				<ion-input type="password" formControlName="password"></ion-input>
+				<ion-input type="password" formControlName="password" autocomplete="new-password"></ion-input>
 			</ion-item>
 			<ion-row class="ion-margin-top">
 				<ion-col class="ion-no-padding">

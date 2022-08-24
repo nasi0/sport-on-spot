@@ -13,7 +13,7 @@ const httpOptions = {
 	providedIn: 'root',
 })
 export class ProfileService {
-	private apiUrl = 'http://localhost:5000/profiles';
+	private apiUrl = 'http://192.168.0.103:5000/profiles';
 
 	constructor(private http: HttpClient) { }
 

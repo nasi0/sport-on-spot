@@ -1,9 +1,13 @@
 export interface Lobby {
-	id?: string;
+	id: string;
 	sportId: string;
 	teamId: string;
-	courtAvailable: boolean;
-	date: string;
-	gameParts: string;
+	courtAvailable?: boolean;
+	date?: string;
+	gameParts?: string;
+	teamsFormat?: string;
+	city?: string;
+	cityLongitude?: string;
+	cityLatitude?: string;
 }
 

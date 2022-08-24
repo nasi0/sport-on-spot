@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class MatchService {
-  private apiUrl = 'http://localhost:5000/matches';
+  private apiUrl = 'http://192.168.0.103:5000/matches';
 
   constructor(private http: HttpClient) {}
 

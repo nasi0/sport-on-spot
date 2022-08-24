@@ -4,6 +4,11 @@
 			<ion-menu-button></ion-menu-button>
 		</ion-buttons>
 		<ion-title> Create Lobby </ion-title>
+		<ion-buttons slot="end">
+			<ion-button size="large" [routerLink]="['/account']">
+				<ion-icon name="person-outline"></ion-icon>
+			</ion-button>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 
@@ -33,11 +38,10 @@
 				</ion-segment-button>
 			</ion-segment>
 
-
-
 			<div class="display-flex-center flex-wrap">
-				<ion-item class="create-lobby-section-wrapper first-item create-lobby-section__large" lines="none">
 
+				<!-- Court Available Section -->
+				<ion-item class="create-lobby-section-wrapper first-item create-lobby-section__large" lines="none">
 					<ion-icon slot="start" class="create-lobby-icon" name="location-outline" color="medium">
 					</ion-icon>
 					<ion-label class="ion-text-center">
@@ -46,6 +50,7 @@
 					<ion-toggle color="secondary" [(ngModel)]="isCourtAvailable"></ion-toggle>
 				</ion-item>
 
+				<!-- Start Time Section -->
 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
 					<ion-label>
 						<ion-icon class="create-lobby-icon" name="calendar-outline" color="medium">
@@ -53,29 +58,34 @@
 					</ion-label>
 					<ion-input value="{{ selectedDate | date: 'dd MMM HH:mm' }}" id="date" placeholder="Select Date"
 						class="ion-text-center " color="dark"></ion-input>
-					<ion-popover trigger="date" size="cover">
+					<ion-modal trigger="date" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
 						<ng-template>
-							<ion-datetime minuteValues="0,15,30,45" presentation="time-date" [firstDayOfWeek]="1"
-								[(ngModel)]="selectedDate" [showDefaultButtons]="true" color="secondary">
-								<span slot="time-label">Start Time</span>
+							<ion-header>
+								<ion-toolbar>
+									<ion-title>Select Date & Time</ion-title>
+								</ion-toolbar>
+							</ion-header>
+							<ion-content class="ion-padding">
+								<ion-datetime minuteValues="0,15,30,45" presentation="time-date" [firstDayOfWeek]="1"
+									[(ngModel)]="selectedDate" [showDefaultButtons]="true" color="secondary"
+									class="datetime-picker">
+									<span slot="time-label">Start Time</span>
 
-							</ion-datetime>
+								</ion-datetime>
+
+							</ion-content>
 						</ng-template>
-					</ion-popover>
+					</ion-modal>
 				</ion-item>
 
-
-
-
-
-
+				<!-- Game Format Section -->
 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
 					<ion-label class="create-lobby-game-length--icon">
 						<ion-icon class="create-lobby-icon" name="stopwatch-outline" color="medium">
 						</ion-icon>
 					</ion-label>
-					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Game Length"
-						[(ngModel)]="selectedGamePart">
+					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Game Format"
+						[(ngModel)]="selectedGamePart" [interfaceOptions]="customSelectInterfaceOptions">
 						<ion-select-option value="0">
 							<ion-label color="secondary">Not specific</ion-label>
 						</ion-select-option>
@@ -85,107 +95,84 @@
 					</ion-select>
 				</ion-item>
 
+				<!-- Team Members Section -->
 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
+					<ion-label class="create-lobby-game-length--icon">
+						<ion-icon class="create-lobby-icon" name="people-outline" color="medium">
+						</ion-icon>
+					</ion-label>
+					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Teams Format"
+						[(ngModel)]="selectedTeamsFormat" [interfaceOptions]="customSelectInterfaceOptions">
+						<ion-select-option value="0">
+							<ion-label color="secondary">Not specific</ion-label>
+						</ion-select-option>
+						<ion-select-option *ngFor="let formats of selectedSport.teamsFormat" value="{{formats}}">
+							<ion-label color="secondary">{{formats}}</ion-label>
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
+
+				<!-- Team Members Section -->
+<!-- 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
 					<ion-label class="create-lobby-game-length--icon">
 						<ion-icon class="create-lobby-icon" name="stopwatch-outline" color="medium">
 						</ion-icon>
 					</ion-label>
-					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Min. team members"
-						[(ngModel)]="selectedGamePart">
+					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Game Format"
+						[(ngModel)]="selectedGamePart" [interfaceOptions]="customSelectInterfaceOptions">
 						<ion-select-option value="0">
 							<ion-label color="secondary">Not specific</ion-label>
 						</ion-select-option>
 						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
 							<ion-label color="secondary">{{parts}}</ion-label>
 						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
 					</ion-select>
-				</ion-item>
+				</ion-item> -->
 
-				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
-					<ion-label class="create-lobby-game-length--icon">
-						<ion-icon class="create-lobby-icon" name="stopwatch-outline" color="medium">
-						</ion-icon>
-					</ion-label>
-					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Min. team members"
-						[(ngModel)]="selectedGamePart">
-						<ion-select-option value="0">
-							<ion-label color="secondary">Not specific</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport.gameParts" value="{{parts}}">
-							<ion-label color="secondary">{{parts}}</ion-label>
-						</ion-select-option>
-					</ion-select>
-				</ion-item>
-
+				<!-- Select City Section -->
 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
 					<ion-label>
-						<ion-icon class="create-lobby-icon" name="calendar-outline" color="medium">
+						<ion-icon class="create-lobby-icon" name="location-outline" color="medium">
 						</ion-icon>
 					</ion-label>
 					<ion-input [ngModel]="selectedCity?.display_name" (ngModelChange)="selectedCityChanged($event)"
-						id="nasko" placeholder="Start typing city" class="ion-text-center " color="dark"></ion-input>
-						{{selectedCity?.lon}}
-						{{selectedCity?.lat}}
+						id="selectCity" placeholder="Start typing city" class="ion-text-center " color="dark">
+					</ion-input>
 
-					<ion-popover trigger="nasko" size="cover">
+					<ion-modal trigger="selectCity" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
 						<ng-template>
-							<ion-list>
-								<ion-list-header class="ion-no-padding">
-									<ion-input [ngModel]="nasko" (ngModelChange)="selectedCityChanged($event)" id="asd"
-										placeholder="Start typing city" class="ion-text-center " color="dark">
-									</ion-input>
-								</ion-list-header>
-
-								<ion-item (click)="selectCity(city)" *ngFor="let city of suggestedCities">
-									<ion-label>{{city.display_name}}</ion-label>
-								</ion-item>
-							</ion-list>
+							<ion-header>
+								<ion-toolbar>
+									<ion-title>Select city</ion-title>
+								</ion-toolbar>
+							</ion-header>
+							<ion-content class="ion-padding">
+								<ion-list>
+									<ion-item>
+										<ion-label>
+											<ion-icon class="create-lobby-icon" name="location-outline" color="medium">
+											</ion-icon>
+										</ion-label>
+										<ion-input placeholder="Start typing city" color="dark"
+											[ngModel]="selectedCityModel" (ngModelChange)="selectedCityChanged($event)">
+										</ion-input>
+									</ion-item>
+									<ion-item (click)="selectCity(city)" *ngFor="let city of suggestedCities">
+										<ion-label>{{city.display_name}}</ion-label>
+									</ion-item>
+								</ion-list>
+								<div class="display-flex-center ion-margin-top">
+									<ion-button (click)="closeCitySuggestionsModal()" color="secondary">Cancel
+									</ion-button>
+								</div>
+							</ion-content>
 						</ng-template>
-					</ion-popover>
+					</ion-modal>
 				</ion-item>
 			</div>
-
-
-
-
-
-
-			<!-- <div class="display-flex-center ion-padding-horizontal">
-				<ion-item class="create-lobby-section-wrapper first-item create-lobby-section__small" lines="none">
-				</ion-item>
-				<ion-item class="create-lobby-section-wrapper create-lobby-section__small" lines="none">
-				</ion-item>
-			</div> -->
 		</ion-card>
-
 		<div class="display-flex-center">
 			<ion-button (click)="createLobby()" color="primary">Create Lobby</ion-button>
 		</div>
 	</div>
-
-
 </ion-content>

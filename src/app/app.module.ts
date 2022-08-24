@@ -22,6 +22,7 @@ import { TeamComponent } from './pages/team/team.component';
 import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { CitySuggestionComponent } from './components/lobby/city-suggestion/city-suggestion.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { RegisterComponent } from './pages/register/register.component';
 		TeamComponent,
 		CreateLobbyComponent,
 		LoginComponent,
-		RegisterComponent
+		RegisterComponent,
+		CitySuggestionComponent
 	],
 	imports: [
 		BrowserModule,

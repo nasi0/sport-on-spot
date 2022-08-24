@@ -1,7 +1,8 @@
 export interface Sport {
-	id?: string;
+	id: string;
 	name: string;
-	icon: any;
-	gameParts: string[];
+	icon?: any;
+	gameParts?: string[];
+	teamsFormat?: string[];
 }
 

@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class LobbiesService {
-  private apiUrl = 'http://localhost:5000/lobbies';
+  private apiUrl = 'http://192.168.0.103:5000/lobbies';
 
   constructor(private http: HttpClient) {}
 

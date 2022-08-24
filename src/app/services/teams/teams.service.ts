@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class TeamsService {
-  private apiUrl = 'http://localhost:5000/teams';
+  private apiUrl = 'http://192.168.0.103:5000/teams';
 
   constructor(private http: HttpClient) {}
 

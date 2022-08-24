@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class SportsService {
-  private apiUrl = 'http://localhost:5000/sports';
+  private apiUrl = 'http://192.168.0.103:5000/sports';
 
   constructor(private http: HttpClient) {}
 

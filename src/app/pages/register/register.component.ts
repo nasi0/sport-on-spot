@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private profileService: ProfileService,
 		private localStorageService: LocalStorageService
-		) {
+	) {
 		this.registerForm = this.formBuilder.group({
 			firstname: ['', [Validators.required]],
 			lastname: ['', [Validators.required]],
@@ -25,12 +25,14 @@ export class RegisterComponent implements OnInit {
 			password: ['', [Validators.required]]
 		});
 	}
-	ngOnInit() { }
+
+	ngOnInit() {
+	}
 
 	submitRegisterForm() {
 		let newProfile: Profile;
 		newProfile = this.registerForm.value;
-		newProfile.id= UUID.UUID().replace(/-/g,'').slice(0,15);
+		newProfile.id = UUID.UUID().replace(/-/g, '').slice(0, 15);
 
 		console.log(newProfile);
 
@@ -42,4 +44,17 @@ export class RegisterComponent implements OnInit {
 		this.localStorageService.setAuthenticated(true);
 	}
 
+	/* 	nasko() {
+			let inputs = Array.prototype.slice.call(document.getElementsByTagName('input'));
+			inputs.forEach(element => {
+				element.addEventListener('focus', (event) => {
+					console.log(event);
+					document.body.scrollTop += element.getBoundingClientRect().top - 10
+				});
+			}); */
+
 }
+	/* $('#id-of-text-input').on('focus', function() {
+document.body.scrollTop += this.getBoundingClientRect().top - 10
+}); */
+

@@ -2,9 +2,16 @@
 	<ion-split-pane contentId="main-content">
 		<ion-menu contentId="main-content" type="overlay">
 			<ion-content>
-				<a [routerLink]="'/homepage'" lines="none" detail="false">
-					<ion-label>Sport-on-Spot</ion-label>
-				</a>
+
+				<ion-menu-toggle auto-hide="false">
+					<ion-item [routerLink]="'/homepage'" detail="false" routerLinkActive="selected"
+						ariaCurrentWhenActive="page">
+						<ion-icon slot="start" [icon]="'home-outline'"></ion-icon>
+						<ion-label>Sport-on-Spot</ion-label>
+					</ion-item>
+				</ion-menu-toggle>
+
+
 				<ion-list id="inbox-list">
 					<ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
 						<ion-item [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected"

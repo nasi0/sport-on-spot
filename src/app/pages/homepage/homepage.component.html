@@ -4,6 +4,11 @@
 			<ion-menu-button></ion-menu-button>
 		</ion-buttons>
 		<ion-title> Homepage </ion-title>
+		<ion-buttons slot="end">
+			<ion-button size="large" [routerLink]="['/account']">
+				<ion-icon name="person-outline"></ion-icon>
+			</ion-button>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 
@@ -11,19 +16,27 @@
 	<div class="page-content-wrapper homepage-content__wrapper ">
 
 
-
-		<h2 class="homepage-content__title">Hello, Nasko!</h2>
-		<div class="homepage-content__subtitle">Welcome to Sport-on-Spot Home.</div>
-
+		<div class="homepage-content__header">
+			<h2 class="homepage-content__title ion-no-margin">Hello, Nasko!</h2>
+			<div class="homepage-content__subtitle ion-no-margin">Welcome to Sport-on-Spot Home.</div>
+		</div>
 
 
 
 
 
 		<div class="homepage-content__card-wrapper display-flex-center flex-wrap">
-			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
+
+			<ion-button [routerLink]="[button.link]" fill="outline"
+				class="homepage-content__card ion-text-center ion-no-margin" *ngFor="let button of buttons">
+				<ion-label class="homepage-content__label">{{button.label}}</ion-label>
+			</ion-button>
+
+
+
+			<!-- <ion-card class="homepage-content__card ion-text-center ion-no-margin">
 				<ion-label class="homepage-content__label">You have a team and searching for opponent?</ion-label>
-				<ion-button [routerLink]="['/create-lobby']" class="ion-margin-bottom">Create Lobby</ion-button>
+				<ion-button [routerLink]="['/create-lobby']" class="ion-margin-bottom" fill="outline">Create Lobby</ion-button>
 			</ion-card>
 
 			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
@@ -39,7 +52,7 @@
 			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
 				<ion-label class="homepage-content__label">Are you searching for a game?</ion-label>
 				<ion-button [routerLink]="['/search-opponent']" class="ion-margin-bottom">Search Opponent</ion-button>
-			</ion-card>
+			</ion-card> -->
 		</div>
 	</div>
 </ion-content>

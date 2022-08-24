@@ -70,6 +70,20 @@
       "email": "dsadsa@das.da",
       "password": "dsadasda",
       "id": "1816dfe6cd03286"
+    },
+    {
+      "firstname": "atanas",
+      "lastname": "petrov",
+      "email": "nasi0.ap@gmail.com",
+      "password": "jqiBYXRntw4TDcG",
+      "id": "70edfb3351a18b3"
+    },
+    {
+      "firstname": "atanas",
+      "lastname": "petrov",
+      "email": "nasi0.ap@gmail.com",
+      "password": "yL9nWUu5dTWFMGu",
+      "id": "9564cc9f964f35e"
     }
   ],
   "matches": [
@@ -178,6 +192,25 @@
         "nasi3",
         "kach0"
       ]
+    },
+    {
+      "id": "gcvv-6612414",
+      "name": "gcvv",
+      "players": [
+        "nasi0",
+        "kach0",
+        "nasi1",
+        "nasi1",
+        "nasi3",
+        "nasi1",
+        "kach0",
+        "kach0"
+      ],
+      "ownerId": "kach0",
+      "winsCount": 2,
+      "drawsCount": 1,
+      "losesCount": 1,
+      "stars": 3
     }
   ],
   "sports": [
@@ -188,6 +221,10 @@
       "gameParts": [
         "2x30min",
         "2x45min"
+      ],
+      "teamsFormat": [
+        "5v5",
+        "11v11"
       ]
     },
     {
@@ -197,6 +234,10 @@
       "gameParts": [
         "3of5",
         "2of3"
+      ],
+      "teamsFormat": [
+        "3v3",
+        "6v6"
       ]
     },
     {
@@ -210,6 +251,9 @@
         "2x45min",
         "2x45min",
         "2x45min"
+      ],
+      "teamsFormat": [
+        "6v6"
       ]
     }
   ],
@@ -221,6 +265,53 @@
       "courtAvailable": true,
       "date": "2022-08-25T16:30:00+03:00",
       "gameParts": "2x45min"
+    },
+    {
+      "id": "b4d40a1a-69d9-ca71-3ced-09ce361fd1cf",
+      "sportId": "football",
+      "teamId": "gcvv-6612414",
+      "courtAvailable": true,
+      "date": "2022-08-25T23:15:00+03:00",
+      "gameParts": "2x30min"
+    },
+    {
+      "id": "97e44eef-c751-b3a3-dc66-168afa3fa2f9",
+      "sportId": "football",
+      "teamId": "team-3",
+      "courtAvailable": true,
+      "date": "2022-08-26T23:21:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "11v11"
+    },
+    {
+      "id": "f37dc423-f98f-aea1-0f75-4dd503cbe9fc",
+      "sportId": "football",
+      "teamId": "team-2",
+      "courtAvailable": true,
+      "date": "2022-08-27T23:24:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "11v11"
+    },
+    {
+      "id": "4e2e6b28-1441-e9a4-fa4f-2c26756e5127",
+      "sportId": "football",
+      "teamId": "team-2",
+      "courtAvailable": true,
+      "date": "2022-08-26T23:39:00+03:00",
+      "gameParts": "2x30min",
+      "teamsFormat": "11v11"
+    },
+    {
+      "id": "f6c61333-122b-c2c8-fd9e-a170a563186e",
+      "sportId": "football",
+      "teamId": "frefre-4069304",
+      "courtAvailable": true,
+      "date": "2022-08-31T23:44:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "5v5",
+      "city": "Kaspichan, Shumen, 9930, Bulgaria",
+      "cityLatitude": "43.29106615",
+      "cityLongitude": "27.169145429763848"
     }
   ]
 }

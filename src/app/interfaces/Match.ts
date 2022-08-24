@@ -1,10 +1,10 @@
 export interface Match {
-	id?: string;
+	id: string;
 	homeTeamId: string;
 	guestTeamId: string;
-	finished: boolean;
-	homeTeamScore: number;
-	guestTeamScore: number;
-	result: number;
+	finished?: boolean;
+	homeTeamScore?: number;
+	guestTeamScore?: number;
+	result?: number;
 }
 

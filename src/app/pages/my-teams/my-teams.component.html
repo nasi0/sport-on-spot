@@ -4,6 +4,11 @@
 			<ion-menu-button></ion-menu-button>
 		</ion-buttons>
 		<ion-title> My Teams </ion-title>
+		<ion-buttons slot="end">
+			<ion-button size="large" [routerLink]="['/account']">
+				<ion-icon name="person-outline"></ion-icon>
+			</ion-button>
+		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
