@@ -1,18 +1,19 @@
 <ion-card class="my-teams-card">
-  <ion-card-header color="primary" class="team-card-header">
-    <ion-card-title>
-      <ion-label>{{team.name}}</ion-label>
-    </ion-card-title>
-    <ion-button color="secondary" size="small" class="ion-no-margin">Create Lobby</ion-button>
-  </ion-card-header>
+	<ion-card-header color="primary" class="team-card-header">
+		<ion-card-title>
+			<ion-label>{{team?.name}}</ion-label>
+		</ion-card-title>
+		<ion-button color="secondary" size="small" class="ion-no-margin">Create Lobby</ion-button>
+	</ion-card-header>
 
-   <ion-card-content class="team-card-content">
-    <ion-item color="light" *ngFor="let player of players"  routerLink="/account/{{player.id}}" routerLinkActive="active" ariaCurrentWhenActive="page">
-      <ion-avatar>
-        <img [src]="player.profileImageUrl || ''" />
-      </ion-avatar>
-      <ion-label class="ion-padding-horizontal">{{player.name}}</ion-label>
-      <fa-icon *ngIf="player.id === team.ownerId"  [icon]="faStar"></fa-icon>
-    </ion-item>
-  </ion-card-content>
+	<ion-card-content class="team-card-content">
+		<ion-item color="light" *ngFor="let player of players" routerLink="/account/{{player?.id}}"
+			routerLinkActive="active" ariaCurrentWhenActive="page">
+			<ion-avatar>
+				<img [src]="player.profileImageUrl || ''" />
+			</ion-avatar>
+			<ion-label class="ion-padding-horizontal">{{player?.name}}</ion-label>
+			<fa-icon *ngIf="player?.id === team.ownerId" [icon]="faStar"></fa-icon>
+		</ion-item>
+	</ion-card-content>
 </ion-card>

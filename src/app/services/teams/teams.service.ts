@@ -27,7 +27,12 @@ export class TeamsService {
   }
 
   getTeamByProfile(playerId: string): Observable<Team> {
-    const url = `${this.apiUrl}?players_like=${playerId}`;
+    const url = `${this.apiUrl}?playersIds_like=${playerId}`;
+    return this.http.get<Team>(url);
+  }
+
+  getTeamOfOwner(playerId: string): Observable<Team> {
+    const url = `${this.apiUrl}?ownerId=${playerId}`;
     return this.http.get<Team>(url);
   }
 }

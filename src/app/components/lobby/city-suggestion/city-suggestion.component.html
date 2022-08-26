@@ -1,39 +1,39 @@
-<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
-  <ion-label>
-    <ion-icon class="create-lobby-icon" name="location-outline" color="medium">
-    </ion-icon>
-  </ion-label>
-  <ion-input [ngModel]="selectedCity?.display_name" (ngModelChange)="selectedCityChanged($event)"
-    id="selectCity" placeholder="Start typing city" class="ion-text-center " color="dark">
-  </ion-input>
+<ion-item lines="none">
+	<ion-label>
+		<ion-icon class="create-lobby-icon" name="location-outline" color="medium">
+		</ion-icon>
+	</ion-label>
+	<ion-input [ngModel]="selectedCity?.display_name" (ngModelChange)="selectedCityChanged($event)" id="selectCity"
+		placeholder="Start typing city" class="ion-text-center " color="dark">
+	</ion-input>
 
-  <ion-modal trigger="selectCity" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Select city</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <ion-icon class="create-lobby-icon" name="location-outline" color="medium">
-              </ion-icon>
-            </ion-label>
-            <ion-input placeholder="Start typing city" color="dark"
-              [ngModel]="selectedCityModel" (ngModelChange)="selectedCityChanged($event)">
-            </ion-input>
-          </ion-item>
-          <ion-item (click)="selectCity(city)" *ngFor="let city of suggestedCities">
-            <ion-label>{{city.display_name}}</ion-label>
-          </ion-item>
-        </ion-list>
-        <div class="display-flex-center ion-margin-top">
-          <ion-button (click)="closeCitySuggestionsModal()" color="secondary">Cancel
-          </ion-button>
-        </div>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+	<ion-modal trigger="selectCity" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
+		<ng-template>
+			<ion-header>
+				<ion-toolbar>
+					<ion-title>Select city</ion-title>
+				</ion-toolbar>
+			</ion-header>
+			<ion-content class="ion-padding">
+				<ion-list>
+					<ion-item>
+						<ion-label>
+							<ion-icon class="create-lobby-icon" name="location-outline" color="medium">
+							</ion-icon>
+						</ion-label>
+						<ion-input placeholder="Start typing city" color="dark" [ngModel]="selectedCityModel"
+							(ngModelChange)="selectedCityChanged($event)">
+						</ion-input>
+					</ion-item>
+					<ion-item (click)="selectCity(city)" *ngFor="let city of suggestedCities">
+						<ion-label>{{city.display_name}}</ion-label>
+					</ion-item>
+				</ion-list>
+				<div class="display-flex-center ion-margin-top">
+					<ion-button (click)="closeCitySuggestionsModal()" color="secondary">Cancel
+					</ion-button>
+				</div>
+			</ion-content>
+		</ng-template>
+	</ion-modal>
 </ion-item>

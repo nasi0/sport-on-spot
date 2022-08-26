@@ -110,7 +110,7 @@ export class CreateLobbyComponent implements OnInit {
 		};
 
 		this.lobbiesService.createLobby(newLobby).subscribe(() => {
-			this.clearForm();
+			//this.clearForm();
 			this.openToast();
 		});
 	}
@@ -123,17 +123,8 @@ export class CreateLobbyComponent implements OnInit {
 		this.selectedCity = null;
 	}
 
-	selectedCityChanged(newValue) {
-		if (newValue.length >= 3) {
-			this.locationService.searchCity(newValue).subscribe((suggestedCities) => this.suggestedCities = suggestedCities);
-		}
-	}
-
 	selectCity(selectedCity) {
 		this.selectedCity = selectedCity;
-		console.log(this.selectedCity);
-		this.dismissModal();
-		this.clearCitySuggestions();
 	}
 
 	onWillDismiss() {
@@ -148,15 +139,6 @@ export class CreateLobbyComponent implements OnInit {
 			desc: 'Modal Opened'
 		};
 		history.pushState(modalState, null);
-	}
-
-	closeCitySuggestionsModal() {
-		this.dismissModal();
-		this.clearCitySuggestions();
-	}
-
-	clearCitySuggestions() {
-		this.suggestedCities = null;
 	}
 
 	async openToast() {

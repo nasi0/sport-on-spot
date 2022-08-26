@@ -1,7 +1,9 @@
+import { Team } from 'src/app/interfaces/Team';
 import { Component, OnInit } from '@angular/core';
 import { faVolleyball, faFutbol, faBasketball } from '@fortawesome/free-solid-svg-icons'
 import { SportsService } from 'src/app/services/sports/sports.service';
 import { LobbiesService } from 'src/app/services/lobbies/lobbies.service';
+import { TeamsService } from 'src/app/services/teams/teams.service';
 import { Lobby } from 'src/app/interfaces/Lobby';
 
 @Component({
@@ -10,8 +12,12 @@ import { Lobby } from 'src/app/interfaces/Lobby';
 	styleUrls: ['./search-opponent.component.scss'],
 })
 export class SearchOpponentComponent implements OnInit {
-	lobbies: any;
+	maxStars = [[], [], [], [], []];
+	selectedCity: any;
+	lobbies: any = [];
 	sports: any;
+
+	nasko: any;
 
 	faVolleyball = faVolleyball;
 	faFutbol = faFutbol;
@@ -29,14 +35,14 @@ export class SearchOpponentComponent implements OnInit {
 	]
 
 	search = {
-		sport: "football",
-		range: 1,
-		rating: 1
+		sportId: "football",
+		city: ''
 	}
 
 	constructor(
 		private sportsService: SportsService,
-		private lobbiesService: LobbiesService
+		private lobbiesService: LobbiesService,
+		private teamsService: TeamsService
 	) { }
 
 	ngOnInit() {
@@ -45,17 +51,44 @@ export class SearchOpponentComponent implements OnInit {
 	}
 
 	onSportChanged(event: Event) {
-		this.search.sport = (event as CustomEvent).detail.value;
+		this.search.sportId = (event as CustomEvent).detail.value;
 		console.log(this.lobbies);
 	}
 
-	onRangeChange(event: Event) {
-		this.search.range = (event as CustomEvent).detail.value;
-	}
+	/* 	onRangeChange(event: Event) {
+			this.search.range = (event as CustomEvent).detail.value;
+		} */
 
 
 	searchOpponents() {
-		this.lobbiesService.getAllLobbies().subscribe((lobbies) => this.lobbies = lobbies);
+		this.lobbiesService.searchLobby(this.search).subscribe((lobbies) => {
+			console.log(lobbies)
+			Object.keys(lobbies).forEach((index) => {
+				this.getLobbyTeamName(lobbies[index]);
+			});
+			//console.log(this.getLobbyTeamName(lobbies));
+			this.lobbies = lobbies
+			console.log(this.lobbies);
+		});
+	}
+
+	getLobbyTeamName(lobbies: Lobby) {
+		var teams;
+		this.teamsService.getTeam(lobbies.teamId).subscribe({
+			next(team) {
+				lobbies['team'] = team;
+				console.log(lobbies);
+			},
+			error(msg) {
+				console.log('Error Getting Location: ', msg);
+			}
+		});
+
+	}
+
+	selectCity(newCity) {
+		this.selectedCity = newCity;
+		this.search.city = this.selectedCity?.display_name;
 	}
 
 	public customFormatter(value: number) {

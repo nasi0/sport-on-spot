@@ -27,6 +27,17 @@ export class LobbiesService {
     return this.http.get<Lobby>(url);
   }
 
+  searchLobby(queryObject: Object): Observable<Lobby> {
+    let query = '';
+    Object.keys(queryObject).forEach((key) => {
+      console.log(queryObject[key]);
+      query += `${key}_like=${queryObject[key]}&`
+    });
+    console.log(query);
+    const url = `${this.apiUrl}?${query}`;
+    return this.http.get<Lobby>(url);
+  }
+
   createLobby(lobby: Lobby): Observable<Lobby> {
     return this.http.post<Lobby>(this.apiUrl, lobby, httpOptions);
   }

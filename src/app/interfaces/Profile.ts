@@ -1,7 +1,6 @@
 export interface Profile {
 	id: string;
-	firstname: string;
-	lastname: string;
+	name: string;
 	email: string;
 	profileImageUrl?: string;
 	pastMatches?: string[]

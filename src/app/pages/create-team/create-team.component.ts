@@ -13,8 +13,7 @@ export class CreateTeamComponent implements OnInit {
 
 	currentProfile: Profile = {
 		'id': 'nasi0',
-		'firstname': 'Atanas',
-		'lastname': 'Petrov',
+		'name': 'Atanas',
 		'email': 'nasi0.ap@gmail.com',
 		"profileImageUrl": "https://placebeard.it/168x168",
 		"pastMatches": [
@@ -60,7 +59,7 @@ export class CreateTeamComponent implements OnInit {
 		const newTeam: Team = {
 			id: this.generateTeamId(this.teamName),
 			name: this.teamName,
-			players: this.selectedProfiles.map(profile => profile.id),
+			playersIds: this.selectedProfiles.map(profile => profile.id),
 			ownerId: 'kach0',
 			winsCount: 2,
 			drawsCount: 1,

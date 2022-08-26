@@ -113,7 +113,7 @@
 				</ion-item>
 
 				<!-- Team Members Section -->
-<!-- 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
+				<!-- 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
 					<ion-label class="create-lobby-game-length--icon">
 						<ion-icon class="create-lobby-icon" name="stopwatch-outline" color="medium">
 						</ion-icon>
@@ -130,7 +130,10 @@
 				</ion-item> -->
 
 				<!-- Select City Section -->
-				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
+				<app-city-suggestion (newSelectedCityEvent)="selectCity($event)" [selectedCity]="selectedCity"
+					class="create-lobby-section-wrapper create-lobby-section__large"></app-city-suggestion>
+
+				<!-- <ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
 					<ion-label>
 						<ion-icon class="create-lobby-icon" name="location-outline" color="medium">
 						</ion-icon>
@@ -168,7 +171,7 @@
 							</ion-content>
 						</ng-template>
 					</ion-modal>
-				</ion-item>
+				</ion-item> -->
 			</div>
 		</ion-card>
 		<div class="display-flex-center">

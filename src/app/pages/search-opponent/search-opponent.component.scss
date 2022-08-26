@@ -29,11 +29,62 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 }
 
+.search-opponent__large {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: calc((var(--page-content-width) - 20px) / 2);
+}
+
 .found-team-stats {
-	padding: 0 8px;
-	border-left: 1px solid;
-	border-color: rgba(0, 0, 0, 0.13);
-	&:first-child {
-		border-left: none;
+	margin: 8px;
+    flex-basis: 25%;
+    justify-content: start;
+}
+
+.found-team {
+	&__wrapper {
+		padding: 4px 8px;
+		min-height: 50px;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		&:hover {
+			background: var(--ion-color-light-tint);
+			cursor: pointer;
+		}
+	}
+
+	&__name {
+		flex-basis: 150px;
+		font-weight: bolder;
+	}
+
+	&__stats-wrapper {
+		flex-basis: 70%;
+		flex-grow: 1;
+		justify-content: start;
+	}
+
+	&__star-icon {
+		font-size: 15px;
+	}
+
+	&__chevron-icon {
+		@media (max-width: 576px) {
+			display: none;
+		}
+	}
+}
+
+.search-opponent__distance {
+	&-label {
+		margin-top: 8px
+	}
+
+	&-range {
+		height: 16px;
+		margin: 4px 0;
 	}
 }

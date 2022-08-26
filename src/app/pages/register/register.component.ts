@@ -19,8 +19,7 @@ export class RegisterComponent implements OnInit {
 		private localStorageService: LocalStorageService
 	) {
 		this.registerForm = this.formBuilder.group({
-			firstname: ['', [Validators.required]],
-			lastname: ['', [Validators.required]],
+			name: ['', [Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required]]
 		});

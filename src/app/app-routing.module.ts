@@ -8,6 +8,7 @@ import { SearchOpponentComponent } from './pages/search-opponent/search-opponent
 import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { LobbyComponent } from './pages/lobby/lobby.component';
 
 const routes: Routes = [
 	{
@@ -50,8 +51,11 @@ const routes: Routes = [
 	{
 		path: 'register',
 		component: RegisterComponent
+	},
+	{
+		path: 'lobby/:id',
+		component: LobbyComponent
 	}
-
 ];
 
 @NgModule({

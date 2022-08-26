@@ -37,50 +37,43 @@
       "profileImageUrl": "https://placebeard.it/168x168?u"
     },
     {
-      "firstname": "frer",
-      "lastname": "grge",
+      "name": "frer",
       "email": "rge@dsa.dasa",
       "password": "asda",
       "id": "asd"
     },
     {
-      "firstname": "greger",
-      "lastname": "gregre",
+      "name": "greger",
       "email": "asda@dsadsa.asd",
       "password": "sadsda",
       "id": "asda"
     },
     {
-      "firstname": "grege",
-      "lastname": "ggreger",
+      "name": "grege",
       "email": "gre@dsa.dsa",
       "password": "frefrefer",
       "id": "700b15e5-ccd2-4767-b610-7b7464d090ef"
     },
     {
-      "firstname": "haha",
-      "lastname": "baha",
+      "name": "haha",
       "email": "haha@baha.bg",
       "password": "hahdshadha",
       "id": "56898ad3bf2c9ac"
     },
     {
-      "firstname": "ferfre",
-      "lastname": "asfsafa",
+      "name": "ferfre",
       "email": "dsadsa@das.da",
       "password": "dsadasda",
       "id": "1816dfe6cd03286"
     },
     {
-      "firstname": "atanas",
-      "lastname": "petrov",
+      "name": "atanas",
       "email": "nasi0.ap@gmail.com",
       "password": "jqiBYXRntw4TDcG",
       "id": "70edfb3351a18b3"
     },
     {
-      "firstname": "atanas",
-      "lastname": "petrov",
+      "name": "atanas",
       "email": "nasi0.ap@gmail.com",
       "password": "yL9nWUu5dTWFMGu",
       "id": "9564cc9f964f35e"
@@ -128,7 +121,7 @@
     {
       "id": "team-1",
       "name": "Manchester United",
-      "players": [
+      "playersIds": [
         "nasi0",
         "kach0",
         "nasi02",
@@ -138,12 +131,13 @@
       "winsCount": 3,
       "drawsCount": 1,
       "losesCount": 2,
-      "stars": 3
+      "stars": 3,
+      "players": []
     },
     {
       "id": "team-2",
       "name": "Real Madrid",
-      "players": [
+      "playersIds": [
         "nasi0",
         "kach0",
         "nasi2"
@@ -152,12 +146,13 @@
       "winsCount": 3,
       "drawsCount": 1,
       "losesCount": 2,
-      "stars": 5
+      "stars": 5,
+      "players": []
     },
     {
       "id": "team-3",
       "name": "Liverpool",
-      "players": [
+      "playersIds": [
         "nasi0",
         "kach0",
         "nasi02",
@@ -167,36 +162,40 @@
       "winsCount": 3,
       "drawsCount": 1,
       "losesCount": 2,
-      "stars": 5
+      "stars": 5,
+      "players": []
     },
     {
       "id": "frefre-4069304",
       "name": "frefre",
-      "players": [
+      "playersIds": [
         "nasi0"
-      ]
+      ],
+      "players": []
     },
     {
       "id": "-4050300",
       "name": "фев",
-      "players": [
+      "playersIds": [
         "nasi0"
-      ]
+      ],
+      "players": []
     },
     {
       "id": "asda-7732168",
       "name": "asda",
-      "players": [
+      "playersIds": [
         "nasi3",
         "nasi1",
         "nasi3",
         "kach0"
-      ]
+      ],
+      "players": []
     },
     {
       "id": "gcvv-6612414",
       "name": "gcvv",
-      "players": [
+      "playersIds": [
         "nasi0",
         "kach0",
         "nasi1",
@@ -210,7 +209,8 @@
       "winsCount": 2,
       "drawsCount": 1,
       "losesCount": 1,
-      "stars": 3
+      "stars": 3,
+      "players": []
     }
   ],
   "sports": [
@@ -312,6 +312,174 @@
       "city": "Kaspichan, Shumen, 9930, Bulgaria",
       "cityLatitude": "43.29106615",
       "cityLongitude": "27.169145429763848"
+    },
+    {
+      "id": "3a6ebcad-3d1a-9ff2-85a5-5ee3dada0328",
+      "sportId": "football",
+      "teamId": "team-2",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2x30min",
+      "teamsFormat": "11v11",
+      "city": "Varna, Bulgaria",
+      "cityLatitude": "43.2073873",
+      "cityLongitude": "27.9166653"
+    },
+    {
+      "id": "b88b6692-6317-8a09-66b1-ae18c25de04b",
+      "sportId": "football",
+      "teamId": "frefre-4069304",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "11v11",
+      "city": "Varna, Bulgaria",
+      "cityLatitude": "43.2073873",
+      "cityLongitude": "27.9166653"
+    },
+    {
+      "id": "56187fc2-684d-b5f8-77bb-9df05f0bda43",
+      "sportId": "football",
+      "teamId": "gcvv-6612414",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "5v5",
+      "city": "Varna, Bulgaria",
+      "cityLatitude": "43.2073873",
+      "cityLongitude": "27.9166653"
+    },
+    {
+      "id": "5eb38665-1a15-36c9-d643-0cb449eff5b8",
+      "sportId": "football",
+      "teamId": "gcvv-6612414",
+      "courtAvailable": false,
+      "date": "2022-08-30T02:24:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "5v5",
+      "city": "Varna, Bulgaria",
+      "cityLatitude": "43.2073873",
+      "cityLongitude": "27.9166653"
+    },
+    {
+      "id": "7375bec8-e1df-32f7-9a06-d7ef95edddd5",
+      "sportId": "football",
+      "teamId": "gcvv-6612414",
+      "courtAvailable": false,
+      "date": "2022-08-30T02:24:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "5v5",
+      "city": "Sofia, Sofia City, Sofia-City, Bulgaria",
+      "cityLatitude": "42.6977028",
+      "cityLongitude": "23.3217359"
+    },
+    {
+      "id": "b5a04e7f-2be4-1fbd-d903-27e6ddcfc016",
+      "sportId": "football",
+      "teamId": "team-1",
+      "courtAvailable": true,
+      "date": "2022-08-30T02:24:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "5v5",
+      "city": "Sofia, Sofia City, Sofia-City, Bulgaria",
+      "cityLatitude": "42.6977028",
+      "cityLongitude": "23.3217359"
+    },
+    {
+      "id": "51b7b31b-3b56-3fbd-11fd-1c85e471b9c2",
+      "sportId": "football",
+      "teamId": "team-1",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2x30min",
+      "teamsFormat": "11v11",
+      "city": "Sofia, Sofia City, Sofia-City, Bulgaria",
+      "cityLatitude": "42.6977028",
+      "cityLongitude": "23.3217359"
+    },
+    {
+      "id": "6c2aa9ef-e2f8-4e3a-7333-d0cb4dfb87a9",
+      "sportId": "football",
+      "teamId": "team-1",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2x30min",
+      "teamsFormat": "11v11",
+      "city": "Sofia, Sofia City, Sofia-City, Bulgaria",
+      "cityLatitude": "42.6977028",
+      "cityLongitude": "23.3217359"
+    },
+    {
+      "id": "bb2118ed-8975-3f36-3897-cb7260dde2fd",
+      "sportId": "football",
+      "teamId": "team-1",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2x30min",
+      "teamsFormat": "11v11",
+      "city": "Dobrich, Bulgaria",
+      "cityLatitude": "43.5688397",
+      "cityLongitude": "27.8297415"
+    },
+    {
+      "id": "2190068b-b45a-f13e-c0f7-0efb69c89c75",
+      "sportId": "football",
+      "teamId": "team-3",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2x45min",
+      "teamsFormat": "11v11",
+      "city": "Dobrich, Bulgaria",
+      "cityLatitude": "43.5688397",
+      "cityLongitude": "27.8297415"
+    },
+    {
+      "id": "d29f0edb-4160-55c2-394f-b7d380d1cf51",
+      "sportId": "volleyball",
+      "teamId": "team-3",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "3of5",
+      "teamsFormat": "3v3",
+      "city": "Dobrich, Bulgaria",
+      "cityLatitude": "43.5688397",
+      "cityLongitude": "27.8297415"
+    },
+    {
+      "id": "8055f7d0-c33e-7e28-4547-e316d41f62f1",
+      "sportId": "volleyball",
+      "teamId": "team-1",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "3of5",
+      "teamsFormat": "3v3",
+      "city": "Dobrich, Bulgaria",
+      "cityLatitude": "43.5688397",
+      "cityLongitude": "27.8297415"
+    },
+    {
+      "id": "026f4b20-48aa-4dac-ad28-cf14d7e16049",
+      "sportId": "volleyball",
+      "teamId": "team-1",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2of3",
+      "teamsFormat": "3v3",
+      "city": "Dobrich, Bulgaria",
+      "cityLatitude": "43.5688397",
+      "cityLongitude": "27.8297415"
+    },
+    {
+      "id": "da8f44fa-967d-f44d-4aa8-c3a1aaa14fac",
+      "sportId": "volleyball",
+      "teamId": "team-1",
+      "courtAvailable": true,
+      "date": "2022-08-31T02:24:00+03:00",
+      "gameParts": "2of3",
+      "teamsFormat": "6v6",
+      "city": "Dobrich, Bulgaria",
+      "cityLatitude": "43.5688397",
+      "cityLongitude": "27.8297415"
     }
   ]
 }

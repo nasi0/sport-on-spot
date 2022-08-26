@@ -18,7 +18,7 @@ export class LocationService {
 	constructor(private http: HttpClient) { }
 
 	searchCity(searchQuery: string): Observable<string> {
-		const url = `${this.apiUrl}?q=${searchQuery}&format=json&limit=5`;
+		const url = `${this.apiUrl}?city=${searchQuery}&format=json&limit=5&country=bulgaria&accept-language=en`;
 		return this.http.get<string>(url);
 	}
 }

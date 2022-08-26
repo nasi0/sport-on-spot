@@ -5,21 +5,21 @@ import { Component, Input, OnInit } from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
-  selector: 'app-team-card',
-  templateUrl: './team-card.component.html',
-  styleUrls: ['./team-card.component.scss'],
+	selector: 'app-team-card',
+	templateUrl: './team-card.component.html',
+	styleUrls: ['./team-card.component.scss'],
 })
 export class TeamCardComponent implements OnInit {
-  @Input() team: Team;
-  players: Profile[] = [];
-  faStar = faStar;
+	@Input() team: Team;
+	players: Profile[] = [];
+	faStar = faStar;
 
-  constructor(
-    private profileService: ProfileService
-  ) { }
+	constructor(
+		private profileService: ProfileService
+	) { }
 
-  ngOnInit() {
-    this.team.players.forEach(player => this.profileService.getProfile(player).subscribe(profile => this.players.push(profile)));
-  }
-
+	ngOnInit() {
+		console.log(this.team);
+		this.team.playersIds.forEach(playerId => this.profileService.getProfile(playerId).subscribe(profile => this.players?.push(profile)));
+	}
 }

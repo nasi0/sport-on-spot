@@ -10,8 +10,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "json-server --watch db.json --port 5000 --host 192.168.0.103",
-    "app": "ionic serve"
+    "server": "json-server --watch db.json --port 5000",
+    "server-192": "json-server --watch db.json --port 5000 --host 192.168.0.103",
+    "app": "ionic serve",
+    "app-192": "ionic serve --host=192.168.0.103"
   },
   "private": true,
   "dependencies": {

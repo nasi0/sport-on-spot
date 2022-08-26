@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
 		console.log(this.loginForm.value);
 		let currentProfile: Profile = {
 			id: 'nasi0',
-			firstname: 'Atanas',
-			lastname: 'Petrov',
+			name: 'Atanas',
 			email: 'nasi0.ap@gmail.com'
 		};
 		this.localStorageService.setInfo(currentProfile);
