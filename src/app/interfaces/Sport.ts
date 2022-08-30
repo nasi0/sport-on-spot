@@ -1,5 +1,5 @@
 export interface Sport {
-	id: string;
+	_id: string;
 	name: string;
 	icon?: any;
 	gameParts?: string[];

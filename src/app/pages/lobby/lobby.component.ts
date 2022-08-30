@@ -19,9 +19,7 @@ export class LobbyComponent implements OnInit {
 	isDataLoaded: boolean = false;
 	lobbyId: string;
 	currentLobby: Lobby;
-	homeTeamId: string;
 	homeTeam: Team;
-	guestTeamId: string;
 	guestTeam: Team;
 	status?: string;
 
@@ -40,15 +38,15 @@ export class LobbyComponent implements OnInit {
 		this.lobbyId = this.activatedRoute.snapshot.paramMap.get('id');
 		this.lobbiesService.getLobby(this.lobbyId).subscribe((lobby) => {
 			this.currentLobby = lobby;
-			this.homeTeamId = lobby.teamId;
-
-			this.loadTeam(lobby.teamId)
+			this.homeTeam = lobby.team;
+			this.isDataLoaded = true;
+			console.log(this.homeTeam);
 		});
-		if (this.currentProfile) {
-			//getTeamOfOwner
-			this.teamsService.getTeamByProfile(this.currentProfile.id).subscribe((teams) => this.currentProfileTeams = teams);
-
-		}
+		//getTeamOfOwner
+		this.profileService.getProfile().subscribe((profile) => {
+			this.currentProfileTeams = profile.teams;
+			console.log(profile.teams);
+		});
 	}
 
 	loadCurrentProfileInfo() {
@@ -56,14 +54,7 @@ export class LobbyComponent implements OnInit {
 		this.localStorageService.currentProfile.subscribe(currentProfile => this.currentProfile = currentProfile);
 	}
 
-	loadTeam(teamId) {
-		this.teamsService.getTeam(teamId).subscribe((team) => {
-			this.homeTeam = team;
-			this.loadPlayers(this.homeTeam);
-		});
-	}
-
-	loadPlayers(team) {
+	/* loadPlayers(team) {
 		console.log(team.playersIds);
 
 		team.playersIds.forEach(player => this.profileService.getProfile(player).subscribe(profile => {
@@ -71,18 +62,18 @@ export class LobbyComponent implements OnInit {
 			console.log(this.homeTeam);
 		}));
 
-		console.log(this.homeTeam.players);
 		this.isDataLoaded = true;
 
-	}
+	} */
 
 	selectGuestTeam(team: Team) {
 		this.guestTeam = team;
 	}
 
 	selectTeam() {
-		this.guestTeam = this.currentProfileTeams.filter(team => team.id === this.guestTeamId)[0];
+		this.guestTeam = this.currentProfileTeams.filter(team => team._id === this.guestTeam)[0];
+		console.log('this.guestTeam');
 		console.log(this.guestTeam);
-		this.loadPlayers(this.guestTeam);
+		//this.loadPlayers(this.guestTeam);
 	}
 }

@@ -1,8 +1,9 @@
+import { ProfileService } from 'src/app/services/profile/profile.service';
 import { TeamsService } from './../../services/teams/teams.service';
 import { Component, OnInit } from '@angular/core';
 import { Profile } from './../../interfaces/profile';
 import { Team } from './../../interfaces/Team';
-import { generate } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-create-team',
@@ -11,29 +12,23 @@ import { generate } from 'rxjs';
 })
 export class CreateTeamComponent implements OnInit {
 
-	currentProfile: Profile = {
-		'id': 'nasi0',
-		'name': 'Atanas',
-		'email': 'nasi0.ap@gmail.com',
-		"profileImageUrl": "https://placebeard.it/168x168",
-		"pastMatches": [
-			"match-1",
-			"match-2",
-			"match-3"
-		],
-		"nextMatches": [],
-		"teams": []
-	}
-
+	currentProfile: Profile;
 
 	desiredSlots: Array<any> = new Array(4);
-	selectedProfiles: Array<Profile> = [this.currentProfile];
+	selectedProfiles: Array<Profile>;
 	teamName: string;
 	constructor(
 		private teamsService: TeamsService,
-	) { }
+		private profileService: ProfileService,
+		private router: Router,
+		) { }
 
-	ngOnInit() { }
+		ngOnInit() {
+			this.profileService.getProfile().subscribe(profile => {
+				this.currentProfile = profile;
+				this.selectedProfiles = [this.currentProfile];
+			});
+	}
 
 	addNewSlot() {
 		this.desiredSlots.push(undefined);
@@ -46,7 +41,7 @@ export class CreateTeamComponent implements OnInit {
 	}
 
 	deselectProfile(deselectedProfile: Profile) {
-		this.selectedProfiles = this.selectedProfiles.filter(function (profile) { return profile.id != deselectedProfile.id; });
+		this.selectedProfiles = this.selectedProfiles.filter(function (profile) { return profile._id != deselectedProfile._id; });
 		console.log(this.selectedProfiles);
 	}
 	createTeam() {
@@ -57,24 +52,16 @@ export class CreateTeamComponent implements OnInit {
 		}
 
 		const newTeam: Team = {
-			id: this.generateTeamId(this.teamName),
 			name: this.teamName,
-			playersIds: this.selectedProfiles.map(profile => profile.id),
-			ownerId: 'kach0',
-			winsCount: 2,
-			drawsCount: 1,
-			losesCount: 1,
-			stars: 3
+			players: this.selectedProfiles.map(profile => profile._id),
 		};
 
-		this.teamsService.createTeam(newTeam).subscribe((team) => console.log(team));
+		this.teamsService.createTeam(newTeam).subscribe((response) => {
+			console.log(response);
+			if (response) {
+				this.router.navigate(['/my-teams']);
+			} else {
+			}
+		});
 	}
-
-	generateTeamId(teamName: string) {
-		return teamName.toLowerCase().replace(/[^a-zA-Z0-9]/g, "")
-			.concat('-' + Math.floor(Math.random() * 10000000)
-				.toString());
-	}
-
-
 }

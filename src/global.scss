@@ -54,6 +54,7 @@
 .page-content-wrapper {
 	max-width: var(--page-content-width);
 	margin: 0 auto;
+
 	&--compact {
 		max-width: calc(var(--page-content-width) /2);
 	}
@@ -102,9 +103,18 @@ ion-card-title {
 
 ion-card {
 	box-shadow: none;
-    border-radius: 6px;
-    outline: 1px solid #e6e6e6;
-    box-sizing: content-box;
+	border-radius: 6px;
+	outline: 1px solid #e6e6e6;
+	box-sizing: content-box;
+}
+
+ion-card,
+.ion-blurry-background {
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 4px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
 }
 
 /* ion-app {
@@ -131,4 +141,3 @@ ion-menu {
 	-webkit-backdrop-filter: blur(20px);
 	border: 1px solid rgba(255, 255, 255, 0.3);
 } */
-

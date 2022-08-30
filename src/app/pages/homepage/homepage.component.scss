@@ -1,16 +1,13 @@
 .homepage-content {
 	&__wrapper {
+		padding: 0 8px 8px;
 
 		@media (max-width: 576px) {
 			display: flex;
 			align-content: space-between;
 			flex-wrap: wrap;
-			justify-content: space-between;
-			align-items: center;
 			height: 100%;
 		}
-
-		padding: 0 8px 8px;
 	}
 
 	&__header {
@@ -26,18 +23,9 @@
 	}
 
 	&__card {
-		flex-basis: 40%;
+		width: 40%;
 		min-height: 200px;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: space-between;
-		align-content: center;
-
 		flex-grow: 1;
-		flex-shrink: 1;
-		//width: 0;
-		//flex-basis: calc((var(--page-content-width) - 20px) / 2);
 	}
 
 	&__card-wrapper {
@@ -47,5 +35,10 @@
 	&__label {
 		margin: auto;
 		white-space: break-spaces;
+	}
+
+	&__content__title {
+		display: block;
+		width: 100%;
 	}
 }

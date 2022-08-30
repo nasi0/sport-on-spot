@@ -61,8 +61,10 @@
 	--ion-color-light-shade: #d7d8da;
 	--ion-color-light-tint: #f5f6f9;
 
-	--ion-item-background: #ffffff;
-	--ion-background-color: #f0f2f5;
+	--ion-item-background: none;
+	--ion-background-color: radial-gradient(circle, rgba(255,255,239,1) 0%, rgba(232,243,255,1) 100%);
+	/* background: rgb(245,255,228);
+background: radial-gradient(circle, rgba(245,255,228,1) 0%, rgba(198,224,255,1) 100%); */
 	/*
 	--ion-card-background: #faf7f0;
 	--ion-toolbar-background: #000;

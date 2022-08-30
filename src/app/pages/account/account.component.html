@@ -21,7 +21,7 @@
 					<ion-card-title>Next Games</ion-card-title>
 				</ion-card-header>
 				<ion-card-content class="ion-no-padding">
-					<div *ngFor="let match of matches">
+					<div *ngFor="let match of profile.nextMatches">
 						<app-matchrow [match]="match"></app-matchrow>
 					</div>
 
@@ -33,20 +33,11 @@
 					<ion-card-title>Recent Games</ion-card-title>
 				</ion-card-header>
 				<ion-card-content class="ion-no-padding">
-					<div *ngFor="let match of matches">
+					<div *ngFor="let match of profile.pastMatches">
 						<app-matchrow [match]="match"></app-matchrow>
 					</div>
-
 				</ion-card-content>
 			</ion-card>
 		</div>
 	</ion-content>
-</div>
-<div *ngIf="!isDataLoaded" class="profile-not-found__container">
-	<ion-card class="ion-padding ion-text-center">
-		<div class="ion-padding-bottom">Profile <b><i>{{accountId}}</i></b> not found.</div>
-		<a [routerLink]="'/homepage'">
-			<ion-icon name="home-outline" size="large"></ion-icon>
-		</a>
-	</ion-card>
 </div>

@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss'],
+	selector: 'app-homepage',
+	templateUrl: './homepage.component.html',
+	styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {}
+	ngOnInit() { }
 
-  buttons = [
-    {
-      label: 'You have a team and searching for opponent?',
-      link: '/create-lobby'
-    },
-    {
-      label: 'You don\'t have a team?',
-      link: '/create-team'
-    },
-    {
-      label: 'Are you searching for a game?',
-      link: '/search-opponent'
-    },
-    {
-      label: 'Are you searching for a game?',
-      link: '/search-opponent'
-    }
-  ]
+	buttons = [
+		{
+			label: 'Create Loby',
+			link: '/create-lobby'
+		},
+		{
+			label: 'Create Team',
+			link: '/create-team'
+		},
+		{
+			label: 'Search for Opponent',
+			link: '/search-opponent'
+		},
+		{
+			label: 'My Profile',
+			link: '/account'
+		}
+	]
 
 }

@@ -35,7 +35,7 @@ export class SearchOpponentComponent implements OnInit {
 	]
 
 	search = {
-		sportId: "football",
+		sport: '',
 		city: ''
 	}
 
@@ -51,44 +51,19 @@ export class SearchOpponentComponent implements OnInit {
 	}
 
 	onSportChanged(event: Event) {
-		this.search.sportId = (event as CustomEvent).detail.value;
-		console.log(this.lobbies);
+		this.search.sport = (event as CustomEvent).detail.value;
 	}
-
-	/* 	onRangeChange(event: Event) {
-			this.search.range = (event as CustomEvent).detail.value;
-		} */
-
 
 	searchOpponents() {
 		this.lobbiesService.searchLobby(this.search).subscribe((lobbies) => {
-			console.log(lobbies)
-			Object.keys(lobbies).forEach((index) => {
-				this.getLobbyTeamName(lobbies[index]);
-			});
-			//console.log(this.getLobbyTeamName(lobbies));
 			this.lobbies = lobbies
 			console.log(this.lobbies);
 		});
 	}
 
-	getLobbyTeamName(lobbies: Lobby) {
-		var teams;
-		this.teamsService.getTeam(lobbies.teamId).subscribe({
-			next(team) {
-				lobbies['team'] = team;
-				console.log(lobbies);
-			},
-			error(msg) {
-				console.log('Error Getting Location: ', msg);
-			}
-		});
-
-	}
-
 	selectCity(newCity) {
 		this.selectedCity = newCity;
-		this.search.city = this.selectedCity?.display_name;
+		this.search.city = this.selectedCity?.display_name; //TODO: Broken when we are directly entering city
 	}
 
 	public customFormatter(value: number) {

@@ -9,6 +9,7 @@ import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.componen
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LobbyComponent } from './pages/lobby/lobby.component';
+import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
 
 const routes: Routes = [
 	{
@@ -21,28 +22,29 @@ const routes: Routes = [
 		component: HomepageComponent
 	},
 	{
-		path: 'folder/:id',
-		loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule)
-	},
-	{
 		path: 'account',
-		loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+		loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule),
+		canActivate: [IsAuthenticatedGuard]
 	},
 	{
 		path: 'create-team',
-		component: CreateTeamComponent
+		component: CreateTeamComponent,
+		canActivate: [IsAuthenticatedGuard]
 	},
 	{
 		path: 'my-teams',
-		component: MyTeamsComponent
+		component: MyTeamsComponent,
+		canActivate: [IsAuthenticatedGuard]
 	},
 	{
 		path: 'search-opponent',
-		component: SearchOpponentComponent
+		component: SearchOpponentComponent,
+		canActivate: [IsAuthenticatedGuard]
 	},
 	{
 		path: 'create-lobby',
-		component: CreateLobbyComponent
+		component: CreateLobbyComponent,
+		canActivate: [IsAuthenticatedGuard]
 	},
 	{
 		path: 'login',

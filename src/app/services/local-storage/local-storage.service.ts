@@ -14,6 +14,15 @@ export class LocalStorageService {
 		this.localStorage = _localStorageRefService.localStorage;
 	}
 
+	getItem(key) {
+		return this.localStorage.getItem(key);
+	}
+
+	setItem(key, value) {
+		const jsonData = JSON.stringify(value);
+		this.localStorage.setItem(key, jsonData);
+	}
+
 	setInfo(data: Profile): void {
 		const jsonData = JSON.stringify(data);
 		this.localStorage.setItem('currentProfile', jsonData);

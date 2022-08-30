@@ -19,7 +19,6 @@ export class TeamCardComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		console.log(this.team);
-		this.team.playersIds.forEach(playerId => this.profileService.getProfile(playerId).subscribe(profile => this.players?.push(profile)));
+	//	this.team.players.forEach(playerId => this.profileService.getProfile(playerId).subscribe(profile => this.players?.push(profile)));
 	}
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Profile } from '../../interfaces/profile';
+import { Profile } from 'src/app/interfaces/profile';
 
 const httpOptions = {
 	headers: new HttpHeaders({
@@ -13,30 +13,19 @@ const httpOptions = {
 	providedIn: 'root',
 })
 export class ProfileService {
-	private apiUrl = 'http://192.168.0.103:5000/profiles';
+	private apiUrl = 'http://localhost:5000/api/users';
 
 	constructor(private http: HttpClient) { }
 
-	getProfile(profileId: string): Observable<Profile> {
+	getProfile(profileId: string = ''): Observable<Profile> {
 		const url = `${this.apiUrl}/${profileId}`;
 		return this.http.get<Profile>(url);
 	}
 
-	createProfile(profile: Profile): Observable<Profile> {
-		return this.http.post<Profile>(this.apiUrl, profile, httpOptions);
+	generateAvatar(profile: Profile): string {
+		const pastelColorsHex = ['77dd77', '89cff0', '99c5c4', '9adedb', 'aa9499', 'aaf0d1', 'b2fba5', 'b39eb5', 'bdb0d0', 'bee7a5', 'befd73', 'c1c6fc', 'c6a4a4', 'cb99c9', 'fdfd96', 'ff6961', 'ff694f', 'ff9899', 'ffb7ce', 'ca9bf7'];
+		const AVATAR_API_URI = `https://ui-avatars.com/api/?name=`;
+		const avatarColor = `&background=${pastelColorsHex[Math.floor(Math.random() * pastelColorsHex.length + 1)]}`;
+		return `${AVATAR_API_URI}${encodeURI(profile.name)}${avatarColor}`;
 	}
-
-	/*   deleteTask(task: Profile): Observable<Profile> {
-		const url = `${this.apiUrl}/${task.id}`;
-		return this.http.delete<Profile>(url);
-	  }
-
-	  updateTaskReminder(task: Profile): Observable<Profile> {
-		const url = `${this.apiUrl}/${task.id}`;
-		return this.http.put<Profile>(url, task, httpOptions);
-	  }
-
-	  addTask(task: Profile): Observable<Profile> {
-		return this.http.post<Profile>(this.apiUrl, task, httpOptions);
-	  } */
 }

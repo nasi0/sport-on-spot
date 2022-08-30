@@ -1,8 +1,8 @@
 export interface Lobby {
-	id: string;
-	sportId: string;
-	teamId: string;
-	matchId?: string;
+	_id?: string;
+	sport: string;
+	team: any;
+	match?: string;
 	courtAvailable?: boolean;
 	date?: string;
 	gameParts?: string;

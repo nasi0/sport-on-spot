@@ -29,9 +29,9 @@
 					<ion-card class="ion-no-margin ion-margin-vertical">
 						<ion-item color="light" lines="none">
 							<ion-avatar>
-								<img [src]="currentProfile.profileImageUrl" />
+								<img [src]="currentProfile?.profileImageUrl" />
 							</ion-avatar>
-							<ion-label class="ion-padding-horizontal">{{currentProfile.name}}</ion-label>
+							<ion-label class="ion-padding-horizontal">{{currentProfile?.name}}</ion-label>
 							<ion-label slot="end" class="ion-padding-horizontal">Owner</ion-label>
 						</ion-item>
 					</ion-card>
@@ -41,10 +41,10 @@
 					</app-search-profile>
 
 					<ion-button size="small" color="secondary" (click)="addNewSlot()"><i>+ add new slot</i></ion-button>
+					<div class="display-flex-center">
+						<ion-button [disabled]="teamName === undefined" (click)="createTeam()">Create Team</ion-button>
+					</div>
 				</ion-card-content>
-				<div class="display-flex-center">
-					<ion-button [disabled]="teamName === undefined" (click)="createTeam()">Create Team</ion-button>
-				</div>
 			</ion-card>
 		</div>
 	</div>

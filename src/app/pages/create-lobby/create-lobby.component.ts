@@ -1,5 +1,5 @@
+import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { UUID } from 'angular2-uuid';
 import { faVolleyball, faFutbol, faBasketball } from '@fortawesome/free-solid-svg-icons'
 import { SportsService } from 'src/app/services/sports/sports.service';
 import { TeamsService } from 'src/app/services/teams/teams.service';
@@ -8,6 +8,7 @@ import { LocationService } from 'src/app/services/location/location.service';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { Lobby } from 'src/app/interfaces/Lobby';
 import { ModalController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-create-lobby',
@@ -15,6 +16,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 	styleUrls: ['./create-lobby.component.scss'],
 })
 export class CreateLobbyComponent implements OnInit {
+	dateNow: any = new Date();
 
 	suggestedCities: any;
 	selectedCityModel: any;
@@ -38,7 +40,7 @@ export class CreateLobbyComponent implements OnInit {
 	selectedTeamsFormat: any;
 	selectedCity: any;
 
-	myTeams: any;
+	myTeams: any = [];
 	icons = {
 		"faFutbol": faFutbol,
 		"faVolleyball": faVolleyball,
@@ -50,21 +52,27 @@ export class CreateLobbyComponent implements OnInit {
 	sports: any;
 
 	constructor(
-		private teamsService: TeamsService,
+		private profileService: ProfileService,
 		private sportsService: SportsService,
 		private lobbiesService: LobbiesService,
-		private locationService: LocationService,
 		private localStorageService: LocalStorageService,
 		private modalCtrl: ModalController,
-		private toastCtrl: ToastController
+		private toastCtrl: ToastController,
+		private router: Router,
 	) { }
 
 	ngOnInit() {
 		this.localStorageService.loadInfo();
 		this.localStorageService.currentProfile.subscribe(currentProfile => this.currentProfile = currentProfile);
 
-		this.teamsService.getTeamByProfile(this.currentProfile?.id).subscribe((teams) => this.myTeams = teams);
+		this.profileService.getProfile().subscribe((profile) => {
+			this.myTeams = profile.teams;
+			console.log(this.myTeams);
+		});
+
 		this.sportsService.getAllSports().subscribe((sports) => this.sports = sports);
+
+		this.dateNow = this.prepareDateForView(this.dateNow);
 	}
 
 	@HostListener('window:popstate', ['$event'])
@@ -75,7 +83,7 @@ export class CreateLobbyComponent implements OnInit {
 	onSportChanged(event: Event) {
 		let selectedSportId = (event as CustomEvent).detail.value;
 		this.selectedSport = this.sports.filter(obj => {
-			return obj.id === selectedSportId;
+			return obj._id === selectedSportId;
 		})[0];
 		this.selectedGamePart = null;
 		this.selectedTeamsFormat = null
@@ -84,8 +92,9 @@ export class CreateLobbyComponent implements OnInit {
 	onTeamChanged(event: Event) {
 		let selectedTeamId = (event as CustomEvent).detail.value;
 		this.selectedTeam = this.myTeams.filter(obj => {
-			return obj.id === selectedTeamId;
+			return obj._id === selectedTeamId;
 		})[0];
+		console.log(this.selectedTeam._id);
 	}
 
 	createLobby() {
@@ -97,9 +106,8 @@ export class CreateLobbyComponent implements OnInit {
 		}
 
 		const newLobby: Lobby = {
-			id: UUID.UUID(),
-			sportId: this.selectedSport.id,
-			teamId: this.selectedTeam.id,
+			sport: this.selectedSport._id,
+			team: this.selectedTeam._id,
 			courtAvailable: this.isCourtAvailable,
 			date: this.selectedDate,
 			gameParts: this.selectedGamePart,
@@ -108,11 +116,16 @@ export class CreateLobbyComponent implements OnInit {
 			cityLatitude: this.selectedCity.lat,
 			cityLongitude: this.selectedCity.lon
 		};
-
-		this.lobbiesService.createLobby(newLobby).subscribe(() => {
-			//this.clearForm();
-			this.openToast();
-		});
+		this.lobbiesService.createLobby(newLobby)
+			.subscribe((response) => {
+				console.log(response);
+				this.clearForm();
+				if (response) {
+					this.router.navigate(['/homepage']);
+				} else {
+					//this.openToast(response.message);
+				}
+			});
 	}
 
 	clearForm() {
@@ -147,5 +160,10 @@ export class CreateLobbyComponent implements OnInit {
 			duration: 5000
 		});
 		toast.present();
+	}
+
+	prepareDateForView(date: Date): string {
+		date.setMinutes(Math.ceil(date.getMinutes() / 15) * 15);
+		return date.toJSON();
 	}
 }

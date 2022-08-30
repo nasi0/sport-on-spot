@@ -14,45 +14,23 @@
 
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper homepage-content__wrapper ">
-
-
 		<div class="homepage-content__header">
-			<h2 class="homepage-content__title ion-no-margin">Hello, Nasko!</h2>
-			<div class="homepage-content__subtitle ion-no-margin">Welcome to Sport-on-Spot Home.</div>
+			<h2 class="homepage-content__title ion-no-margin">
+				Hello!
+			</h2>
+			<div class="homepage-content__subtitle ion-no-margin">
+				Welcome to Sport-on-Spot Home.
+			</div>
 		</div>
-
-
-
-
-
-		<div class="homepage-content__card-wrapper display-flex-center flex-wrap">
-
-			<ion-button [routerLink]="[button.link]" fill="outline"
-				class="homepage-content__card ion-text-center ion-no-margin" *ngFor="let button of buttons">
-				<ion-label class="homepage-content__label">{{button.label}}</ion-label>
-			</ion-button>
-
-
-
-			<!-- <ion-card class="homepage-content__card ion-text-center ion-no-margin">
-				<ion-label class="homepage-content__label">You have a team and searching for opponent?</ion-label>
-				<ion-button [routerLink]="['/create-lobby']" class="ion-margin-bottom" fill="outline">Create Lobby</ion-button>
-			</ion-card>
-
-			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
-				<ion-label class="homepage-content__label">You don't have a team?</ion-label>
-				<ion-button [routerLink]="['/create-team']" class="ion-margin-bottom">Create Team</ion-button>
-			</ion-card>
-
-			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
-				<ion-label class="homepage-content__label">Are you searching for a game?</ion-label>
-				<ion-button [routerLink]="['/search-opponent']" class="ion-margin-bottom">Search Opponent</ion-button>
-			</ion-card>
-
-			<ion-card class="homepage-content__card ion-text-center ion-no-margin">
-				<ion-label class="homepage-content__label">Are you searching for a game?</ion-label>
-				<ion-button [routerLink]="['/search-opponent']" class="ion-margin-bottom">Search Opponent</ion-button>
-			</ion-card> -->
+		<div class="homepage-content__content">
+			<h3 class="homepage-content__content__title">What's next?</h3>
+			<div class="homepage-content__card-wrapper display-flex-center flex-wrap">
+				<ion-button [routerLink]="[button.link]" fill="outline"
+					class="homepage-content__card ion-blurry-background ion-text-center ion-no-margin"
+					*ngFor="let button of buttons">
+					<ion-label class="homepage-content__label">{{button.label}}</ion-label>
+				</ion-button>
+			</div>
 		</div>
 	</div>
 </ion-content>

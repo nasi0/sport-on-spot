@@ -1,9 +1,10 @@
+import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { UUID } from 'angular2-uuid';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { Profile } from 'src/app/interfaces/profile';
-import { ProfileService } from 'src/app/services/profile/profile.service';
-import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
 	selector: 'app-register',
@@ -15,8 +16,10 @@ export class RegisterComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
+		private router: Router,
+		private authService: AuthService,
 		private profileService: ProfileService,
-		private localStorageService: LocalStorageService
+		private toastCtrl: ToastController,
 	) {
 		this.registerForm = this.formBuilder.group({
 			name: ['', [Validators.required]],
@@ -31,29 +34,27 @@ export class RegisterComponent implements OnInit {
 	submitRegisterForm() {
 		let newProfile: Profile;
 		newProfile = this.registerForm.value;
-		newProfile.id = UUID.UUID().replace(/-/g, '').slice(0, 15);
 
-		console.log(newProfile);
+		newProfile.profileImageUrl = this.profileService.generateAvatar(newProfile);
 
-		this.profileService.createProfile(newProfile).subscribe((profile) => this.loginProfile(profile));
+		this.authService
+			.register(newProfile)
+			.subscribe((response) => {
+				console.log(response);
+				if (response.success) {
+					this.router.navigate(['/homepage']);
+				} else {
+					this.openToast(response.message);
+				}
+			});
 	}
 
-	loginProfile(profile: Profile) {
-		this.localStorageService.setInfo(profile);
-		this.localStorageService.setAuthenticated(true);
+	async openToast(message) {
+		const toast = await this.toastCtrl.create({
+			message: message,
+			duration: 5000
+		});
+		toast.present();
 	}
-
-	/* 	nasko() {
-			let inputs = Array.prototype.slice.call(document.getElementsByTagName('input'));
-			inputs.forEach(element => {
-				element.addEventListener('focus', (event) => {
-					console.log(event);
-					document.body.scrollTop += element.getBoundingClientRect().top - 10
-				});
-			}); */
-
 }
-	/* $('#id-of-text-input').on('focus', function() {
-document.body.scrollTop += this.getBoundingClientRect().top - 10
-}); */
 

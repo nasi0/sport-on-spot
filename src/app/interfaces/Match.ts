@@ -1,7 +1,7 @@
 export interface Match {
 	id: string;
-	homeTeamId: string;
-	guestTeamId: string;
+	homeTeam: any;
+	guestTeam: any;
 	status?: string;
 	homeTeamScore?: number;
 	guestTeamScore?: number;

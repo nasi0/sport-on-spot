@@ -3,17 +3,17 @@
 		<ion-card-title>
 			<ion-label>{{team?.name}}</ion-label>
 		</ion-card-title>
-		<ion-button color="secondary" size="small" class="ion-no-margin">Create Lobby</ion-button>
+		<!-- <ion-button color="secondary" size="small" class="ion-no-margin">Create Lobby</ion-button> -->
 	</ion-card-header>
 
 	<ion-card-content class="team-card-content">
-		<ion-item color="light" *ngFor="let player of players" routerLink="/account/{{player?.id}}"
+		<ion-item color="light" *ngFor="let player of team.players" routerLink="/account/{{player?._id}}"
 			routerLinkActive="active" ariaCurrentWhenActive="page">
 			<ion-avatar>
 				<img [src]="player.profileImageUrl || ''" />
 			</ion-avatar>
 			<ion-label class="ion-padding-horizontal">{{player?.name}}</ion-label>
-			<fa-icon *ngIf="player?.id === team.ownerId" [icon]="faStar"></fa-icon>
+			<fa-icon *ngIf="player?._id === team.owner" [icon]="faStar"></fa-icon>
 		</ion-item>
 	</ion-card-content>
 </ion-card>

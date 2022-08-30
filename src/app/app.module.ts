@@ -9,6 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+/** Providers */
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
+
 /** Components */
 import { AppComponent } from './app.component';
 import { TeamCardComponent } from './components/team/team-card/team-card.component';
@@ -52,7 +55,7 @@ import { CitySuggestionComponent } from './components/lobby/city-suggestion/city
 		Ng2SearchPipeModule,
   		FontAwesomeModule
 	],
-	providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+	providers: [AuthInterceptorProvider, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }

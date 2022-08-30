@@ -1,7 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
-import { Profile } from 'src/app/interfaces/profile';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-login',
@@ -9,30 +11,43 @@ import { Profile } from 'src/app/interfaces/profile';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-	currentProfile = this.localStorageService.currentProfile;
 	loginForm: FormGroup;
 
 	constructor(
 		private formBuilder: FormBuilder,
-		private localStorageService: LocalStorageService
+		private router: Router,
+		private authService: AuthService,
+		private toastCtrl: ToastController
 	) {
 		this.loginForm = this.formBuilder.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', Validators.required]
 		});
 	}
-	ngOnInit() { this.localStorageService.clearAllLocalStorage(); }
+	ngOnInit() { }
 
 	submitLoginForm() {
-		console.log(this.loginForm.value);
-		let currentProfile: Profile = {
-			id: 'nasi0',
-			name: 'Atanas',
-			email: 'nasi0.ap@gmail.com'
-		};
-		this.localStorageService.setInfo(currentProfile);
-		this.localStorageService.setAuthenticated(true);
-		console.log(this.localStorageService.isAuthenticated());
+		if (this.loginForm.invalid) {
+			return;
+		}
+
+		this.authService
+			.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
+			.subscribe((response) => {
+				console.log(response);
+				if (response.success) {
+					this.router.navigate(['/homepage']);
+				} else {
+					this.openToast(response.message);
+				}
+			});
+	}
+	async openToast(message) {
+		const toast = await this.toastCtrl.create({
+			message: message,
+			duration: 5000
+		});
+		toast.present();
 	}
 
 }

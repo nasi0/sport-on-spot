@@ -1,7 +1,7 @@
-import { TeamsService } from './../../services/teams/teams.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Team } from 'src/app/interfaces/Team';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 
 @Component({
@@ -11,15 +11,18 @@ import { Team } from 'src/app/interfaces/Team';
 })
 export class MyTeamsComponent implements OnInit {
 	myTeams: any
-	currentProfileId = 'kach0';
 
 	constructor(
-		private teamsService: TeamsService,
+		private profileService: ProfileService,
 		private location: Location
 	) { }
 
 	ngOnInit() {
-		this.teamsService.getTeamByProfile(this.currentProfileId).subscribe((teams) => this.myTeams = teams);
+		this.profileService.getProfile().subscribe((profile) => {
+			this.myTeams = profile.teams;
+			console.log('My Teams');
+			console.log(this.myTeams);
+		});
 	}
 
 	goToCreateTeamPage() {

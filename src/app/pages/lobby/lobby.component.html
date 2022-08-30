@@ -13,7 +13,7 @@
 </ion-header>
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper" *ngIf="isDataLoaded">
-		<ion-item class="ion-margin-top">
+		<ion-item class="ion-margin-top ion-blurry-background">
 			<div class="lobby-header-wrapper">
 				<div class="lobby-header-item">
 					<span class="team-name">{{homeTeam.name}}</span>
@@ -28,8 +28,8 @@
 				<div class="lobby-header-item">
 					<span class="team-name">
 						<ion-select class="team-name-select" interface="popover" placeholder="Select Team"
-							[(ngModel)]="guestTeamId" (ngModelChange)="selectTeam()">
-							<ion-select-option *ngFor="let team of currentProfileTeams" value="{{team?.id}}">
+							[(ngModel)]="guestTeam" (ngModelChange)="selectTeam()">
+							<ion-select-option *ngFor="let team of currentProfileTeams" value="{{team._id}}">
 								<ion-label color="secondary">{{team.name}}</ion-label>
 							</ion-select-option>
 						</ion-select>
@@ -40,7 +40,7 @@
 
 		<div class="lobby-information">
 			<div class="team-members team-members__home-team lobby-information__section">
-				<ion-item *ngFor="let player of homeTeam.players" routerLink="/account/{{player?.id}}"
+				<ion-item *ngFor="let player of homeTeam.players" routerLink="/account/{{player?._id}}"
 					routerLinkActive="active" ariaCurrentWhenActive="page">
 					<ion-avatar>
 						<img [src]="player.profileImageUrl || ''" />
@@ -60,7 +60,7 @@
 				</ion-item>
 			</div>
 			<div class="team-members team-members__guest-team lobby-information__section">
-				<ion-item *ngFor="let player of guestTeam?.players" routerLink="/account/{{player?.id}}"
+				<ion-item *ngFor="let player of guestTeam?.players" routerLink="/account/{{player?._id}}"
 					routerLinkActive="active" ariaCurrentWhenActive="page">
 					<ion-avatar>
 						<img [src]="player.profileImageUrl || ''" />

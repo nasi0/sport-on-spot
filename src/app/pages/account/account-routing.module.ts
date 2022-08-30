@@ -6,8 +6,7 @@ import { AccountComponent } from './account.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'nasi0',
-    pathMatch: 'full'
+    component: AccountComponent
   },
   {
     path: ':id',
