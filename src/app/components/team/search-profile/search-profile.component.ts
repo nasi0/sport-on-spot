@@ -1,5 +1,5 @@
 import { ProfileService } from 'src/app/services/profile/profile.service';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Profile } from 'src/app/interfaces/profile';
 
 @Component({
@@ -10,10 +10,9 @@ import { Profile } from 'src/app/interfaces/profile';
 export class SearchProfileComponent implements OnInit {
 	@Output() onSelectProfile: EventEmitter<Profile> = new EventEmitter();
 	@Output() onDeselectProfile: EventEmitter<Profile> = new EventEmitter();
-	public searchTerm: string;
-	nasko: string = '';
+	inputText: string = '';
 	selectedProfile: Profile;
-	profiles;
+	profiles: any;
 
 	constructor(private profileService: ProfileService) { }
 
@@ -29,7 +28,7 @@ export class SearchProfileComponent implements OnInit {
 	clearSelected(profile) {
 		this.selectedProfile = null;
 		this.onDeselectProfile.emit(profile);
-		this.nasko = '';
+		this.inputText = '';
 	}
 
 

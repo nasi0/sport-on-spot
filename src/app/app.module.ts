@@ -27,6 +27,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LobbyComponent } from './pages/lobby/lobby.component';
 import { CitySuggestionComponent } from './components/lobby/city-suggestion/city-suggestion.component';
+import { MatchComponent } from './pages/match/match.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CitySuggestionComponent } from './components/lobby/city-suggestion/city
 		LoginComponent,
 		RegisterComponent,
 		LobbyComponent,
-		CitySuggestionComponent
+		CitySuggestionComponent,
+		MatchComponent
 	],
 	imports: [
 		BrowserModule,

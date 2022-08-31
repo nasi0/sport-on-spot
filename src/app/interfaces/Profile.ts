@@ -1,9 +1,9 @@
+import { Team } from 'src/app/interfaces/Team';
 export interface Profile {
 	_id?: string;
 	name: string;
 	email: string;
 	profileImageUrl?: string;
-	pastMatches?: string[]
-	nextMatches?: string[]
-	teams?: string[]
+	matches?: string[]
+	teams?: Team[]
 }

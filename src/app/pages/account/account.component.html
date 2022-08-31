@@ -1,4 +1,4 @@
-<div *ngIf="isDataLoaded">
+<div>
 	<ion-header [translucent]="true">
 		<ion-toolbar>
 			<ion-buttons slot="start">
@@ -7,33 +7,32 @@
 			<ion-title>My Account</ion-title>
 			<ion-buttons slot="end">
 				<ion-button size="large" [routerLink]="['/account']">
-					<ion-icon name="person-outline"></ion-icon>
+					<ion-icon name="person"></ion-icon>
 				</ion-button>
 			</ion-buttons>
 		</ion-toolbar>
 	</ion-header>
 
 	<ion-content [fullscreen]="true">
-		<div class="page-content-wrapper">
+		<div class="page-content-wrapper" *ngIf="isDataLoaded">
 			<app-profile-header [profile]="profile"></app-profile-header>
 			<ion-card>
 				<ion-card-header>
-					<ion-card-title>Next Games</ion-card-title>
+					<ion-card-title>Next Games ({{nextMatches?.length}})</ion-card-title>
 				</ion-card-header>
 				<ion-card-content class="ion-no-padding">
-					<div *ngFor="let match of profile.nextMatches">
+					<div *ngFor="let match of nextMatches">
 						<app-matchrow [match]="match"></app-matchrow>
 					</div>
-
 				</ion-card-content>
 			</ion-card>
 
 			<ion-card>
 				<ion-card-header>
-					<ion-card-title>Recent Games</ion-card-title>
+					<ion-card-title>Finished Games ({{pastMatches?.length}})</ion-card-title>
 				</ion-card-header>
 				<ion-card-content class="ion-no-padding">
-					<div *ngFor="let match of profile.pastMatches">
+					<div *ngFor="let match of pastMatches">
 						<app-matchrow [match]="match"></app-matchrow>
 					</div>
 				</ion-card-content>

@@ -1,10 +1,7 @@
-import { Team } from 'src/app/interfaces/Team';
 import { Component, OnInit } from '@angular/core';
 import { faVolleyball, faFutbol, faBasketball } from '@fortawesome/free-solid-svg-icons'
 import { SportsService } from 'src/app/services/sports/sports.service';
 import { LobbiesService } from 'src/app/services/lobbies/lobbies.service';
-import { TeamsService } from 'src/app/services/teams/teams.service';
-import { Lobby } from 'src/app/interfaces/Lobby';
 
 @Component({
 	selector: 'app-search-opponent',
@@ -12,27 +9,15 @@ import { Lobby } from 'src/app/interfaces/Lobby';
 	styleUrls: ['./search-opponent.component.scss'],
 })
 export class SearchOpponentComponent implements OnInit {
-	maxStars = [[], [], [], [], []];
 	selectedCity: any;
-	lobbies: any = [];
-	sports: any;
-
-	nasko: any;
-
-	faVolleyball = faVolleyball;
-	faFutbol = faFutbol;
-	faBasketball = faBasketball;
+	foundLobbies: any = [];
+	allSports: any;
 
 	icons = {
 		"faFutbol": faFutbol,
 		"faVolleyball": faVolleyball,
 		"faBasketball": faBasketball
 	}
-
-
-	foundOpponents = [
-		{}, {}, {}, {}
-	]
 
 	search = {
 		sport: '',
@@ -42,11 +27,10 @@ export class SearchOpponentComponent implements OnInit {
 	constructor(
 		private sportsService: SportsService,
 		private lobbiesService: LobbiesService,
-		private teamsService: TeamsService
 	) { }
 
 	ngOnInit() {
-		this.sportsService.getAllSports().subscribe((sports) => this.sports = sports);
+		this.sportsService.getAllSports().subscribe((sports) => this.allSports = sports);
 
 	}
 
@@ -56,8 +40,7 @@ export class SearchOpponentComponent implements OnInit {
 
 	searchOpponents() {
 		this.lobbiesService.searchLobby(this.search).subscribe((lobbies) => {
-			this.lobbies = lobbies
-			console.log(this.lobbies);
+			this.foundLobbies = lobbies
 		});
 	}
 

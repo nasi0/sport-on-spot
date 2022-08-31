@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Lobby } from '../../interfaces/Lobby';
+import { Team } from 'src/app/interfaces/Team';
 
 const httpOptions = {
 	headers: new HttpHeaders({
@@ -40,5 +41,15 @@ export class LobbiesService {
 
 	createLobby(lobby: Lobby): Observable<Lobby> {
 		return this.http.post<Lobby>(this.apiUrl, lobby, httpOptions);
+	}
+
+	challengeLobby(lobby: Lobby, guestTeam: Team, guestTeamContact: string) {
+		const url = `${this.apiUrl}/challenge`;
+		let requestBody = {
+			lobby: lobby,
+			guestTeam: guestTeam,
+			guestTeamContact: guestTeamContact
+		};
+		return this.http.post<Lobby>(url, requestBody, httpOptions);
 	}
 }

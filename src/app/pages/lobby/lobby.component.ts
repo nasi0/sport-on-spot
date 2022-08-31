@@ -1,11 +1,9 @@
-import { Profile } from 'src/app/interfaces/profile';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
-import { TeamsService } from 'src/app/services/teams/teams.service';
 import { Lobby } from 'src/app/interfaces/Lobby';
 import { Team } from 'src/app/interfaces/Team';
 import { LobbiesService } from 'src/app/services/lobbies/lobbies.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
@@ -14,21 +12,20 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 	styleUrls: ['./lobby.component.scss'],
 })
 export class LobbyComponent implements OnInit {
-	currentProfile: Profile;
-	currentProfileTeams: any;
+	currentProfile: any;
 	isDataLoaded: boolean = false;
 	lobbyId: string;
 	currentLobby: Lobby;
 	homeTeam: Team;
 	guestTeam: Team;
-	status?: string;
+	guestTeamContact: string = '';
 
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private lobbiesService: LobbiesService,
-		private teamsService: TeamsService,
 		private profileService: ProfileService,
-		private localStorageService: LocalStorageService
+		private localStorageService: LocalStorageService,
+		private router: Router,
 	) {
 	}
 
@@ -38,14 +35,14 @@ export class LobbyComponent implements OnInit {
 		this.lobbyId = this.activatedRoute.snapshot.paramMap.get('id');
 		this.lobbiesService.getLobby(this.lobbyId).subscribe((lobby) => {
 			this.currentLobby = lobby;
-			this.homeTeam = lobby.team;
+			this.homeTeam = lobby.homeTeam;
+			this.guestTeam = lobby.guestTeam;
 			this.isDataLoaded = true;
-			console.log(this.homeTeam);
+			console.log(this.currentLobby);
 		});
 		//getTeamOfOwner
 		this.profileService.getProfile().subscribe((profile) => {
-			this.currentProfileTeams = profile.teams;
-			console.log(profile.teams);
+			this.currentProfile = profile;
 		});
 	}
 
@@ -54,26 +51,23 @@ export class LobbyComponent implements OnInit {
 		this.localStorageService.currentProfile.subscribe(currentProfile => this.currentProfile = currentProfile);
 	}
 
-	/* loadPlayers(team) {
-		console.log(team.playersIds);
-
-		team.playersIds.forEach(player => this.profileService.getProfile(player).subscribe(profile => {
-			team.players.push(profile);
-			console.log(this.homeTeam);
-		}));
-
-		this.isDataLoaded = true;
-
-	} */
-
-	selectGuestTeam(team: Team) {
-		this.guestTeam = team;
+	selectTeam() {
+		this.guestTeam = this.currentProfile.teams.filter(team => team._id == this.guestTeam)[0];
 	}
 
-	selectTeam() {
-		this.guestTeam = this.currentProfileTeams.filter(team => team._id === this.guestTeam)[0];
-		console.log('this.guestTeam');
-		console.log(this.guestTeam);
-		//this.loadPlayers(this.guestTeam);
+	numberOnly(event): boolean {
+		const charCode = (event.which) ? event.which : event.keyCode;
+		if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+			return false;
+		}
+		return true;
+	}
+
+	clickChallenge() {
+		console.log('asd');
+		this.lobbiesService.challengeLobby(this.currentLobby, this.guestTeam, this.guestTeamContact)
+			.subscribe((match) => {
+				this.router.navigate(['/match', match._id]);
+			});
 	}
 }

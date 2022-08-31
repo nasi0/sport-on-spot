@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 	styleUrls: ['./create-team.component.scss'],
 })
 export class CreateTeamComponent implements OnInit {
-
 	currentProfile: Profile;
 
 	desiredSlots: Array<any> = new Array(4);
@@ -32,17 +31,14 @@ export class CreateTeamComponent implements OnInit {
 
 	addNewSlot() {
 		this.desiredSlots.push(undefined);
-		console.log(this.desiredSlots);
 	}
 
 	selectProfile(selectedProfile: Profile) {
-		this.selectedProfiles.push(selectedProfile);
-		console.log(this.selectedProfiles);
+		return this.selectedProfiles.push(selectedProfile);
 	}
 
 	deselectProfile(deselectedProfile: Profile) {
 		this.selectedProfiles = this.selectedProfiles.filter(function (profile) { return profile._id != deselectedProfile._id; });
-		console.log(this.selectedProfiles);
 	}
 	createTeam() {
 		console.log(this.teamName);
@@ -57,7 +53,6 @@ export class CreateTeamComponent implements OnInit {
 		};
 
 		this.teamsService.createTeam(newTeam).subscribe((response) => {
-			console.log(response);
 			if (response) {
 				this.router.navigate(['/my-teams']);
 			} else {

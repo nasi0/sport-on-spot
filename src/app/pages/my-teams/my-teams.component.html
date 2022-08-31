@@ -6,15 +6,16 @@
 		<ion-title> My Teams </ion-title>
 		<ion-buttons slot="end">
 			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person-outline"></ion-icon>
+				<ion-icon name="person"></ion-icon>
 			</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper">
+		<h3 class="my-teams__section-title">Owned teams ({{ownedTeams?.length}})</h3>
 		<div class="display-flex-center-evenly">
-			<app-team-card *ngFor="let team of myTeams" [team]="team" class="my-teams-card"></app-team-card>
+			<app-team-card *ngFor="let team of ownedTeams" [team]="team" class="my-teams-card"></app-team-card>
 			<div class="my-teams-card">
 				<ion-card class="my-teams-card">
 					<ion-card-header color="primary">
@@ -29,6 +30,10 @@
 					</ion-card-content>
 				</ion-card>
 			</div>
+		</div>
+		<h3 class="my-teams__section-title">Joined teams ({{joinedTeams?.length}})</h3>
+		<div class="display-flex-center-evenly">
+			<app-team-card *ngFor="let team of joinedTeams" [team]="team" class="my-teams-card"></app-team-card>
 		</div>
 	</div>
 </ion-content>

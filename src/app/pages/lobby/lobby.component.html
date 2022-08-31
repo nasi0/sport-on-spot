@@ -6,7 +6,7 @@
 		<ion-title> Lobby </ion-title>
 		<ion-buttons slot="end">
 			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person-outline"></ion-icon>
+				<ion-icon name="person"></ion-icon>
 			</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
@@ -16,31 +16,48 @@
 		<ion-item class="ion-margin-top ion-blurry-background">
 			<div class="lobby-header-wrapper">
 				<div class="lobby-header-item">
-					<span class="team-name">{{homeTeam.name}}</span>
+					<span class="team-name">{{currentLobby.homeTeam.name}}</span>
 				</div>
 				<div class="lobby-header-item">
-					<div class="match-status"><ion-badge color="warning">pending</ion-badge></div>
-					<div class="final-result">0:0</div>
 					<div class="match-status">
-						<ion-button fill="outline">Challenge</ion-button>
+						<ion-badge *ngIf="currentLobby.status == 1" color="warning">pending</ion-badge>
+						<ion-badge *ngIf="currentLobby.status == 2" color="success">challenged</ion-badge>
+					</div>
+					<div class="final-result">0:0</div>
+					<ion-item *ngIf="currentLobby.status == 1">
+						<ion-input [(ngModel)]="guestTeamContact" maxlength="12" (keypress)="numberOnly($event)"
+							placeholder="Contact number" class="ion-text-center" color="dark"></ion-input>
+					</ion-item>
+					<div *ngIf="currentLobby.status == 2">
+						<ion-badge>{{currentLobby.homeTeamContact}}</ion-badge>
+						:
+						<ion-badge>{{currentLobby.guestTeamContact}}</ion-badge>
+					</div>
+					<div class="match-status">
+						<ion-button *ngIf="currentLobby.status == 1"
+							[disabled]="guestTeamContact.length < 10 || guestTeam == undefined" fill="outline"
+							(click)="clickChallenge()">Challenge</ion-button>
 					</div>
 				</div>
-				<div class="lobby-header-item">
+				<div *ngIf="currentLobby.status == 1" class="lobby-header-item">
 					<span class="team-name">
 						<ion-select class="team-name-select" interface="popover" placeholder="Select Team"
 							[(ngModel)]="guestTeam" (ngModelChange)="selectTeam()">
-							<ion-select-option *ngFor="let team of currentProfileTeams" value="{{team._id}}">
+							<ion-select-option *ngFor="let team of currentProfile?.teams" value="{{team._id}}">
 								<ion-label color="secondary">{{team.name}}</ion-label>
 							</ion-select-option>
 						</ion-select>
 					</span>
+				</div>
+				<div *ngIf="currentLobby.status == 2" class="lobby-header-item">
+					<span class="team-name">{{currentLobby.guestTeam.name}}</span>
 				</div>
 			</div>
 		</ion-item>
 
 		<div class="lobby-information">
 			<div class="team-members team-members__home-team lobby-information__section">
-				<ion-item *ngFor="let player of homeTeam.players" routerLink="/account/{{player?._id}}"
+				<ion-item *ngFor="let player of currentLobby.homeTeam.players" routerLink="/account/{{player?._id}}"
 					routerLinkActive="active" ariaCurrentWhenActive="page">
 					<ion-avatar>
 						<img [src]="player.profileImageUrl || ''" />

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { Team } from 'src/app/interfaces/Team';
 import { ProfileService } from 'src/app/services/profile/profile.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-my-teams',
@@ -11,22 +9,26 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 })
 export class MyTeamsComponent implements OnInit {
 	myTeams: any
+	ownedTeams: any;
+	joinedTeams: any;
 
 	constructor(
 		private profileService: ProfileService,
-		private location: Location
+		private router: Router,
+		private activeRoute: ActivatedRoute
 	) { }
 
 	ngOnInit() {
-		this.profileService.getProfile().subscribe((profile) => {
-			this.myTeams = profile.teams;
-			console.log('My Teams');
-			console.log(this.myTeams);
+		this.activeRoute.params.subscribe(routeParams => {
+			this.profileService.getProfile().subscribe((profile) => {
+				this.myTeams = profile.teams;
+				this.ownedTeams = this.myTeams.filter(team => team.owner == profile._id);
+				this.joinedTeams = this.myTeams.filter(team => team.owner !== profile._id);
+			});
 		});
 	}
 
 	goToCreateTeamPage() {
-		this.location.go('create-team');
-		this.location.forward();
+		this.router.navigate(['/my-teams']);
 	}
 }

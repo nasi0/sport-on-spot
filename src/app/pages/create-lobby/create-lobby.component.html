@@ -6,7 +6,7 @@
 		<ion-title> Create Lobby </ion-title>
 		<ion-buttons slot="end">
 			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person-outline"></ion-icon>
+				<ion-icon name="person"></ion-icon>
 			</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
@@ -20,15 +20,15 @@
 			</ion-card-header>
 			<ion-segment class="create-lobby-section-wrapper__full-width" (ionChange)="onSportChanged($event)"
 				scrollable color="secondary">
-				<ion-segment-button *ngFor="let sport of sports" value="{{sport._id}}">
+				<ion-segment-button *ngFor="let sport of allSports" value="{{sport._id}}">
 					<fa-icon class="sport-icon" [icon]="icons[sport.icon]"></fa-icon>
 					<ion-label class="sport-label">{{sport.name}}</ion-label>
 				</ion-segment-button>
 			</ion-segment>
 
-			<ion-segment *ngIf="myTeams.length" class="create-lobby-section-wrapper__full-width"
+			<ion-segment *ngIf="ownedTeams?.length" class="create-lobby-section-wrapper__full-width"
 				(ionChange)="onTeamChanged($event)" scrollable color="secondary">
-				<ion-segment-button *ngFor="let team of myTeams" value="{{team._id}}">
+				<ion-segment-button *ngFor="let team of ownedTeams" value="{{team._id}}">
 					<ion-label class="ion-no-margin">
 						<ion-icon *ngFor="let star of [1,2,3,4,5]; let i = index"
 							class="search-opponent__icon star-icon " name="{{i<team.stars? 'star' : 'star-outline'}}">
@@ -38,9 +38,9 @@
 				</ion-segment-button>
 			</ion-segment>
 
-			<ion-segment *ngIf="!myTeams.length" class="create-lobby-section-wrapper__full-width" color="secondary">
+			<ion-segment *ngIf="!ownedTeams?.length" class="create-lobby-section-wrapper__full-width" color="secondary">
 				<ion-segment-button class="create-lobby__team-missing" [routerLink]="['/create-team']">
-					<ion-label>You are not captain of a team. Please create new team.</ion-label>
+					<ion-label>Only team owners can create a lobby for a team. Please create new team.</ion-label>
 				</ion-segment-button>
 			</ion-segment>
 
@@ -53,7 +53,7 @@
 					<ion-label class="ion-text-center">
 						Court available
 					</ion-label>
-					<ion-toggle color="secondary" [(ngModel)]="isCourtAvailable"></ion-toggle>
+					<ion-toggle color="secondary" [(ngModel)]="tempLobby.isCourtAvailable"></ion-toggle>
 				</ion-item>
 
 				<!-- Start Time Section -->
@@ -62,8 +62,8 @@
 						<ion-icon class="create-lobby-icon" name="calendar-outline" color="medium">
 						</ion-icon>
 					</ion-label>
-					<ion-input value="{{ selectedDate | date: 'dd MMM HH:mm' }}" id="date" placeholder="Select Date"
-						class="ion-text-center " color="dark"></ion-input>
+					<ion-input value="{{ tempLobby.selectedDate | date: 'dd MMM HH:mm' }}" id="date"
+						placeholder="Select Date" class="ion-text-center " color="dark"></ion-input>
 					<ion-modal trigger="date" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
 						<ng-template>
 							<ion-header>
@@ -72,9 +72,9 @@
 								</ion-toolbar>
 							</ion-header>
 							<ion-content class="ion-padding">
-								<ion-datetime min="{{dateNow}}" minuteValues="0,15,30,45" presentation="time-date" [firstDayOfWeek]="1"
-									[(ngModel)]="selectedDate" [showDefaultButtons]="true" color="secondary"
-									class="datetime-picker">
+								<ion-datetime min="{{dateNow}}" minuteValues="0,15,30,45" presentation="time-date"
+									[firstDayOfWeek]="1" [(ngModel)]="tempLobby.selectedDate"
+									[showDefaultButtons]="true" color="secondary" class="datetime-picker">
 									<span slot="time-label">Start Time</span>
 
 								</ion-datetime>
@@ -91,40 +91,50 @@
 						</ion-icon>
 					</ion-label>
 					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Game Format"
-						[(ngModel)]="selectedGamePart" [interfaceOptions]="customSelectInterfaceOptions">
+						[(ngModel)]="tempLobby.selectedGamePart" [interfaceOptions]="customSelectInterfaceOptions">
 						<ion-select-option value="0">
 							<ion-label color="secondary">Not specific</ion-label>
 						</ion-select-option>
-						<ion-select-option *ngFor="let parts of selectedSport?.gameParts" value="{{parts}}">
+						<ion-select-option *ngFor="let parts of tempLobby.selectedSport?.gameParts" value="{{parts}}">
 							<ion-label color="secondary">{{parts}}</ion-label>
 						</ion-select-option>
 					</ion-select>
 				</ion-item>
 
-				<!-- Team Members Section -->
+				<!-- Teams Format Section -->
 				<ion-item class="create-lobby-section-wrapper create-lobby-section__large" lines="none">
 					<ion-label class="create-lobby-game-length--icon">
 						<ion-icon class="create-lobby-icon" name="people-outline" color="medium">
 						</ion-icon>
 					</ion-label>
 					<ion-select class="create-lobby-game-length" interface="popover" placeholder="Teams Format"
-						[(ngModel)]="selectedTeamsFormat" [interfaceOptions]="customSelectInterfaceOptions">
+						[(ngModel)]="tempLobby.selectedTeamsFormat" [interfaceOptions]="customSelectInterfaceOptions">
 						<ion-select-option value="0">
 							<ion-label color="secondary">Not specific</ion-label>
 						</ion-select-option>
-						<ion-select-option *ngFor="let formats of selectedSport?.teamsFormat" value="{{formats}}">
+						<ion-select-option *ngFor="let formats of tempLobby.selectedSport?.teamsFormat"
+							value="{{formats}}">
 							<ion-label color="secondary">{{formats}}</ion-label>
 						</ion-select-option>
 					</ion-select>
 				</ion-item>
 
 				<!-- Select City Section -->
-				<app-city-suggestion (newSelectedCityEvent)="selectCity($event)" [selectedCity]="selectedCity"
+				<app-city-suggestion (newSelectedCityEvent)="selectCity($event)" [selectedCity]="tempLobby.selectedCity"
 					class="create-lobby-section-wrapper create-lobby-section__large"></app-city-suggestion>
+
+				<ion-item class="create-lobby-section-wrapper first-item create-lobby-section__large" lines="none">
+					<ion-icon slot="start" class="create-lobby-icon" name="call-outline" color="medium">
+					</ion-icon>
+					<ion-input [(ngModel)]="tempLobby.homeTeamContact" maxlength="12" (keypress)="numberOnly($event)"
+						placeholder="Contact Number" class="ion-text-center" color="dark"></ion-input>
+				</ion-item>
 			</div>
 		</ion-card>
 		<div class="display-flex-center">
-			<ion-button (click)="createLobby()" color="primary">Create Lobby</ion-button>
+			<ion-button
+				[disabled]="!(tempLobby.selectedSport !== '' && tempLobby.selectedTeam !== '' && tempLobby.selectedCity !== '' && tempLobby.homeTeamContact.length > 9)"
+				(click)="createLobby()" color="primary">Create Lobby</ion-button>
 		</div>
 	</div>
 </ion-content>

@@ -6,7 +6,7 @@
 		<ion-title> Search Opponent </ion-title>
 		<ion-buttons slot="end">
 			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person-outline"></ion-icon>
+				<ion-icon name="person"></ion-icon>
 			</ion-button>
 		</ion-buttons>
 	</ion-toolbar>
@@ -25,50 +25,46 @@
 			</div>
 
 			<ion-segment (ionChange)="onSportChanged($event)" scrollable color="secondary" class="select-sport-section">
-				<ion-segment-button *ngFor="let item of sports" value="{{item._id}}">
-					<fa-icon class="search-opponent__sport-icon" [icon]="icons[item.icon]"></fa-icon>
-					<ion-label class="search-opponent__sport-label">{{item.name}}</ion-label>
+				<ion-segment-button *ngFor="let sport of allSports" value="{{sport._id}}">
+					<fa-icon class="search-opponent__sport-icon" [icon]="icons[sport.icon]"></fa-icon>
+					<ion-label class="search-opponent__sport-label">{{sport.name}}</ion-label>
 				</ion-segment-button>
 			</ion-segment>
 			<div class="display-flex-center">
-				<ion-button (click)="searchOpponents()" color="primary">Search</ion-button>
+				<ion-button
+					[disabled]="!(search.sport !== '' && search.city !== '')"
+					(click)="searchOpponents()" color="primary">Search</ion-button>
 			</div>
 		</ion-card>
 
 
 
 
-		<ion-list *ngIf="lobbies?.length" class="ion-blurry-background ion-no-padding">
+		<ion-list *ngIf="foundLobbies?.length" class="ion-blurry-background ion-no-padding">
 			<div class="found-team__wrapper-title">
-				Found {{lobbies?.length}} opponents
+				Found {{foundLobbies?.length}} opponents
 			</div>
 
 
-			<div class="found-team__wrapper" *ngFor="let lobby of lobbies" [routerLink]="['/lobby', lobby._id]">
-				<div class="found-team__name">{{lobby.team?.name}}</div>
+			<div class="found-team__wrapper" *ngFor="let lobby of foundLobbies" [routerLink]="['/lobby', lobby._id]">
+				<div class="found-team__name">{{lobby.homeTeam?.name}}</div>
 				<div class="found-team__stats-wrapper display-flex-center">
 					<div class="found-team-stats display-flex-center found-team-stats__first-item">
-						<ion-icon class="search-opponent__icon" name="people-outline"></ion-icon> {{lobby.teamsFormat}}
+						<ion-icon class="search-opponent__icon" name="people-outline"></ion-icon> {{lobby.teamsFormat ||
+						'Any'}}
 					</div>
 					<div class="found-team-stats display-flex-center">
-						<ion-icon class="search-opponent__icon" name="stopwatch-outline"></ion-icon>{{lobby.gameParts}}
+						<ion-icon class="search-opponent__icon" name="stopwatch-outline"></ion-icon>{{lobby.gameParts ||
+						'Any'}}
 					</div>
 					<div class="found-team-stats display-flex-center">
 						<ion-icon class="search-opponent__icon" name="stats-chart-outline"></ion-icon>
-						{{lobby.team.winsCount}} {{lobby.team.drawsCount}} {{lobby.team.losesCount}}
+						{{lobby.homeTeam.winsCount}} {{lobby.homeTeam.drawsCount}} {{lobby.homeTeam.losesCount}}
 					</div>
-					<!-- <div class="found-team-stats display-flex-center found-team-stats__first-item">
-
-						<ion-icon *ngFor="let star of maxStars; let i = index" class="found-team__star-icon"
-							name="{{i<lobby.team?.stars? 'star' : 'star-outline'}}">
-						</ion-icon>
-
-
-					</div> -->
 					<div class="found-team-stats display-flex-center found-team-stats__first-item">
 
 						<ion-icon class="search-opponent__icon" name="time-outline"></ion-icon>
-						{{lobby.date | date: 'dd MMM HH:mm' }}
+						{{(lobby.date | date: 'dd MMM HH:mm') || 'Any time' }}
 
 					</div>
 				</div>

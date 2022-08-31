@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../../services/profile/profile.service';
-import { MatchService } from '../../services/matches/matches.service';
-import { TeamsService } from '../../services/teams/teams.service';
 import { Profile } from '../../interfaces/profile'
-import { Match } from '../../interfaces/match'
-
 
 @Component({
 	selector: 'app-account',
@@ -13,9 +9,11 @@ import { Match } from '../../interfaces/match'
 	styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-	public accountId: string;
-	public profile: Profile;
-	public isDataLoaded: boolean;
+	accountId: string;
+	profile: Profile;
+	isDataLoaded: boolean;
+	pastMatches: any = [];
+	nextMatches: any = [];
 
 	constructor(private activatedRoute: ActivatedRoute,
 		private profileService: ProfileService,
@@ -27,10 +25,12 @@ export class AccountComponent implements OnInit {
 	}
 
 	prepareProfileData(accountID) {
-		console.log(accountID);
 		this.profileService.getProfile(accountID).subscribe((profile) => {
 			this.profile = profile;
 			this.isDataLoaded = true;
+
+			this.pastMatches = profile.matches.filter(match => match['status'] > 2);
+			this.nextMatches = profile.matches.filter(match => match['status'] <= 2);
 		});
 	}
 }

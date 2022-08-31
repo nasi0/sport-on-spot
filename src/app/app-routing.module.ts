@@ -9,6 +9,7 @@ import { CreateLobbyComponent } from './pages/create-lobby/create-lobby.componen
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LobbyComponent } from './pages/lobby/lobby.component';
+import { MatchComponent } from './pages/match/match.component';
 import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
 
 const routes: Routes = [
@@ -57,6 +58,11 @@ const routes: Routes = [
 	{
 		path: 'lobby/:id',
 		component: LobbyComponent
+	},
+	{
+		path: 'match/:id',
+		component: MatchComponent,
+		canActivate: [IsAuthenticatedGuard]
 	}
 ];
 

@@ -1,11 +1,11 @@
 <div *ngIf="!selectedProfile" class="search-profile-container">
 	<ion-item color="light"  lines="none">
-		<ion-input placeholder="Team Member" color="dark" [(ngModel)]="nasko"></ion-input>
+		<ion-input placeholder="Team Member" color="dark" [(ngModel)]="inputText"></ion-input>
 	</ion-item>
 	<div>
 		<ion-list class="search-profile-results ion-no-padding"
-			[ngClass]="nasko.length > 0 ? 'active-results' : 'not-active-results'">
-			<ion-item *ngFor="let profile of profiles | filter: nasko" (click)="onClick(profile)">
+			[ngClass]="inputText.length > 1 ? 'active-results' : 'not-active-results'">
+			<ion-item *ngFor="let profile of profiles | filter: inputText" (click)="onClick(profile)">
 				<ion-avatar>
 					<img [src]="profile.profileImageUrl" />
 				</ion-avatar>

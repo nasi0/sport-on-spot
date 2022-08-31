@@ -8,8 +8,11 @@ import {Profile} from '../../../interfaces/profile'
 })
 export class ProfileHeaderComponent implements OnInit {
   @Input() profile: Profile;
+  matchesCount: Number;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.matchesCount = this.profile.matches.filter((match) => match['status'] > 2).length;
+  }
 
 }

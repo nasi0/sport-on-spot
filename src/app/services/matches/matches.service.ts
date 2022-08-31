@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class MatchService {
-  private apiUrl = 'http://192.168.0.103:5000/matches';
+  private apiUrl = 'http://localhost:5000/api/match';
 
   constructor(private http: HttpClient) {}
 
@@ -21,18 +21,9 @@ export class MatchService {
     const url = `${this.apiUrl}/${MatchId}`;
     return this.http.get<Match>(url);
   }
-/*
-  deleteTask(task: Match): Observable<Match> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.delete<Match>(url);
-  }
 
-  updateTaskReminder(task: Match): Observable<Match> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.put<Match>(url, task, httpOptions);
-  }
-
-  addTask(task: Match): Observable<Match> {
-    return this.http.post<Match>(this.apiUrl, task, httpOptions);
-  } */
+  finalizeMatch(match: Match): Observable<Match> {
+    const url = `${this.apiUrl}/finalize/${match._id}`;
+		return this.http.post<Match>(url, match, httpOptions);
+	}
 }

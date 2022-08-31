@@ -1,20 +1,12 @@
-<ion-item ngClass="" lines="none">
+<ion-item ngClass="" lines="none" [routerLink]="['/match', match._id]">
 	<ion-avatar class="display-flex-center" slot="start">
 		<ion-icon size="large" name="football-outline"></ion-icon>
 	</ion-avatar>
 	<div>
-		<span [ngClass]="match.result == 1 ? 'text-bold' : ''">{{match.homeTeamName}}
+		<span>{{match.homeTeam.name}}
 			{{match.homeTeamScore}}</span>
 		-
-		<span [ngClass]="match.result == 2 ? 'text-bold' : ''">{{match.guestTeamScore}}
-			{{match.guestTeamName}}</span>
-	</div>
-	<div class="match-row__info-section display-flex-center" slot="end">
-		<div class="match-row__info-section__group">
-			5 <ion-icon class="match-row__icon" name="people-outline"></ion-icon>
-		</div>
-		<div class="match-row__info-section__group">
-			90 <ion-icon class="match-row__icon" name="time-outline"></ion-icon>
-		</div>
+		<span>{{match.guestTeamScore}}
+			{{match.guestTeam.name}}</span>
 	</div>
 </ion-item>

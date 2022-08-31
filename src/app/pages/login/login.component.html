@@ -20,7 +20,7 @@
 			</ion-item>
 			<ion-row class="ion-margin-top">
 				<ion-col class="ion-no-padding">
-					<a [routerLink]="['/forgot-password']" class="forgot-password-link">Forgot Password?</a>
+					<!-- <a [routerLink]="['/forgot-password']" class="forgot-password-link">Forgot Password?</a> -->
 					<ion-button class="ion-margin-top" type="submit" color="primary" expand="block"
 						[disabled]="!loginForm.valid">Sign In</ion-button>
 				</ion-col>
@@ -29,8 +29,9 @@
 
 
 		<div class="divider ion-margin-vertical">OR</div>
-		<div class="ion-text-center ion-margin-vertical">Don't have an account? <a [routerLink]="['/register']">Sign
-				up</a></div>
+		<div class="ion-text-center ion-margin-vertical">
+			Don't have an account? <a [routerLink]="['/register']">Sign up</a>
+		</div>
 
 	</div>
 </ion-content>

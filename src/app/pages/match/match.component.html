@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> Match </ion-title>
+		<ion-buttons slot="end">
+			<ion-button size="large" [routerLink]="['/account']">
+				<ion-icon name="person"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<div class="page-content-wrapper" *ngIf="isDataLoaded">
+		<ion-item class="ion-margin-top ion-blurry-background">
+			<div class="match-header-wrapper">
+				<div class="match-header-item">
+					<span class="team-name">{{currentMatch?.homeTeam.name}}</span>
+				</div>
+				<div class="match-header-item">
+					<div class="match-status">
+						<ion-badge *ngIf="currentMatch.status == 2" color="success">challenged</ion-badge>
+						<ion-badge *ngIf="currentMatch.status == 3" color="success">finished</ion-badge>
+					</div>
+					<div *ngIf="currentMatch.status == 2 && isOwner" class="final-result">
+						<ion-item class="final-result__team-score">
+							<ion-input class="final-result__team-input" placeholder="0" [(ngModel)]="homeTeamScore">
+							</ion-input>
+						</ion-item>
+						-
+						<ion-item class="final-result__team-score">
+							<ion-input class="final-result__team-input" placeholder="0" [(ngModel)]="guestTeamScore">
+							</ion-input>
+						</ion-item>
+						<ion-button (click)="finalizeMatch()" class="final-result__submit">finalize</ion-button>
+						<ion-badge>{{currentMatch.lobby.homeTeamContact}}</ion-badge>
+						-
+						<ion-badge>{{currentMatch.lobby.guestTeamContact}}</ion-badge>
+					</div>
+					<div *ngIf="currentMatch.status == 3 || !isOwner" class="final-result">
+						{{currentMatch.homeTeamScore}}
+						-
+						{{currentMatch.guestTeamScore}}
+					</div>
+					<div class="match-status">
+					</div>
+				</div>
+				<div class="match-header-item">
+					<span class="team-name">{{currentMatch?.guestTeam.name}}</span>
+				</div>
+			</div>
+		</ion-item>
+
+		<div class="match-information">
+			<div class="team-members team-members__home-team match-information__section">
+				<ion-item *ngFor="let player of currentMatch?.homeTeam.players" routerLink="/account/{{player?._id}}"
+					routerLinkActive="active" ariaCurrentWhenActive="page">
+					<ion-avatar>
+						<img [src]="player.profileImageUrl || ''" />
+					</ion-avatar>
+					<ion-label class="ion-padding-horizontal">{{player?.name}}</ion-label>
+				</ion-item>
+			</div>
+			<div class="team-members team-members__home-team match-information__section">
+				<ion-item class="lobby-information__section-item" color="light" lines="none">
+					<div class="match-details">
+						<div class="match-details__title">Match details</div>
+						<div class="match-details__line">{{currentMatch.lobby.date | date: 'dd MMM HH:mm' }}</div>
+						<div class="match-details__line">{{currentMatch.lobby.gameParts}}</div>
+						<div class="match-details__line">{{currentMatch.lobby.teamsFormat}}</div>
+						<div class="match-details__line">{{currentMatch.lobby.city}}</div>
+					</div>
+				</ion-item>
+			</div>
+			<div class="team-members team-members__guest-team match-information__section">
+				<ion-item *ngFor="let player of currentMatch?.guestTeam.players" routerLink="/account/{{player?._id}}"
+					routerLinkActive="active" ariaCurrentWhenActive="page">
+					<ion-avatar>
+						<img [src]="player.profileImageUrl || ''" />
+					</ion-avatar>
+					<ion-label class="ion-padding-horizontal">{{player?.name}}</ion-label>
+				</ion-item>
+			</div>
+		</div>
+	</div>
+</ion-content>

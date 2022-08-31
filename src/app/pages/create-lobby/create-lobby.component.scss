@@ -22,7 +22,8 @@
 	border-right: 1px solid rgba(0, 0, 0, 0.13);
 	border-top: 1px solid rgba(0, 0, 0, 0.13);
 
-	&:nth-child(2n) {
+	&:nth-child(2n),
+	&:last-child {
 		border-right: none;
 	}
 

@@ -6,7 +6,7 @@
 				<ion-menu-toggle auto-hide="false">
 					<ion-item [routerLink]="'/homepage'" detail="false" routerLinkActive="selected"
 						ariaCurrentWhenActive="page">
-						<ion-icon slot="start" [icon]="'home-outline'"></ion-icon>
+						<ion-icon slot="start" [icon]="'home'"></ion-icon>
 						<ion-label>Sport-on-Spot</ion-label>
 					</ion-item>
 				</ion-menu-toggle>
@@ -20,15 +20,6 @@
 							<ion-label>{{ p.title }}</ion-label>
 						</ion-item>
 					</ion-menu-toggle>
-				</ion-list>
-
-				<ion-list id="labels-list">
-					<ion-list-header>Labels</ion-list-header>
-
-					<ion-item *ngFor="let label of labels" lines="none">
-						<ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-						<ion-label>{{ label }}</ion-label>
-					</ion-item>
 				</ion-list>
 			</ion-content>
 		</ion-menu>

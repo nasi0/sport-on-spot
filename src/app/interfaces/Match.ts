@@ -1,8 +1,10 @@
 export interface Match {
-	id: string;
+	_id: string;
+	lobby: any;
+	sport: any;
 	homeTeam: any;
 	guestTeam: any;
-	status?: string;
+	status?: number;
 	homeTeamScore?: number;
 	guestTeamScore?: number;
 	result?: number;

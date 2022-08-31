@@ -2,13 +2,11 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { faVolleyball, faFutbol, faBasketball } from '@fortawesome/free-solid-svg-icons'
 import { SportsService } from 'src/app/services/sports/sports.service';
-import { TeamsService } from 'src/app/services/teams/teams.service';
 import { LobbiesService } from 'src/app/services/lobbies/lobbies.service';
-import { LocationService } from 'src/app/services/location/location.service';
-import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { Lobby } from 'src/app/interfaces/Lobby';
 import { ModalController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Team } from 'src/app/interfaces/Team';
 
 @Component({
 	selector: 'app-create-lobby',
@@ -16,61 +14,49 @@ import { Router } from '@angular/router';
 	styleUrls: ['./create-lobby.component.scss'],
 })
 export class CreateLobbyComponent implements OnInit {
-	dateNow: any = new Date();
-
-	suggestedCities: any;
-	selectedCityModel: any;
 	currentProfile: any;
-	selectedSport: any = {
-		"id": "football",
-		"name": "football",
-		"icon": faFutbol,
-		"gameParts": [
-			"2x30min", "2x45min"
-		],
-		"teamsFormat": ["5v5", "11v11"]
+	dateNow: any = new Date();
+	ownedTeams: Team[];
+
+	tempLobby: any = {
+		selectedSport: '',
+		selectedTeam: '',
+		isCourtAvailable: false,
+		selectedDate: null,
+		selectedGamePart: '',
+		selectedTeamsFormat: '',
+		selectedCity: '',
+		homeTeamContact: '',
+		status: 1
 	}
+
 	customSelectInterfaceOptions = {
 		size: 'cover'
 	}
-	selectedTeam: any;
-	isCourtAvailable: any;
-	selectedDate: any;
-	selectedGamePart: any;
-	selectedTeamsFormat: any;
-	selectedCity: any;
 
-	myTeams: any = [];
 	icons = {
 		"faFutbol": faFutbol,
 		"faVolleyball": faVolleyball,
 		"faBasketball": faBasketball
 	}
-	faVolleyball = faVolleyball;
-	faFutbol = faFutbol;
-	faBasketball = faBasketball;
-	sports: any;
+	allSports: any;
 
 	constructor(
 		private profileService: ProfileService,
 		private sportsService: SportsService,
 		private lobbiesService: LobbiesService,
-		private localStorageService: LocalStorageService,
 		private modalCtrl: ModalController,
 		private toastCtrl: ToastController,
 		private router: Router,
 	) { }
 
 	ngOnInit() {
-		this.localStorageService.loadInfo();
-		this.localStorageService.currentProfile.subscribe(currentProfile => this.currentProfile = currentProfile);
-
 		this.profileService.getProfile().subscribe((profile) => {
-			this.myTeams = profile.teams;
-			console.log(this.myTeams);
+			this.currentProfile = profile;
+			this.ownedTeams = profile.teams.filter(team => team.owner === profile._id);
 		});
 
-		this.sportsService.getAllSports().subscribe((sports) => this.sports = sports);
+		this.sportsService.getAllSports().subscribe((sports) => this.allSports = sports);
 
 		this.dateNow = this.prepareDateForView(this.dateNow);
 	}
@@ -82,41 +68,42 @@ export class CreateLobbyComponent implements OnInit {
 
 	onSportChanged(event: Event) {
 		let selectedSportId = (event as CustomEvent).detail.value;
-		this.selectedSport = this.sports.filter(obj => {
+		this.tempLobby.selectedSport = this.allSports.filter(obj => {
 			return obj._id === selectedSportId;
 		})[0];
-		this.selectedGamePart = null;
-		this.selectedTeamsFormat = null
+		this.tempLobby.selectedGamePart = null;
+		this.tempLobby.selectedTeamsFormat = null
 	}
 
 	onTeamChanged(event: Event) {
 		let selectedTeamId = (event as CustomEvent).detail.value;
-		this.selectedTeam = this.myTeams.filter(obj => {
-			return obj._id === selectedTeamId;
+		this.tempLobby.selectedTeam = this.currentProfile.teams.filter(obj => {
+			return obj._id == selectedTeamId;
 		})[0];
-		console.log(this.selectedTeam._id);
 	}
 
 	createLobby() {
-		if (this.selectedSport === undefined ||
-			this.selectedTeam === undefined ||
-			this.selectedDate === undefined) { //TODO: Create check if team name is unique
+		if (this.tempLobby.selectedSport === undefined ||
+			this.tempLobby.selectedTeam === undefined ||
+			this.tempLobby.selectedDate === undefined) { //TODO: Create check if team name is unique
 			console.log('Something is undefined');
 			return;
 		}
 
-		const newLobby: Lobby = {
-			sport: this.selectedSport._id,
-			team: this.selectedTeam._id,
-			courtAvailable: this.isCourtAvailable,
-			date: this.selectedDate,
-			gameParts: this.selectedGamePart,
-			teamsFormat: this.selectedTeamsFormat,
-			city: this.selectedCity.display_name,
-			cityLatitude: this.selectedCity.lat,
-			cityLongitude: this.selectedCity.lon
+		const finalLobby: Lobby = {
+			sport: this.tempLobby.selectedSport._id,
+			homeTeam: this.tempLobby.selectedTeam,
+			courtAvailable: this.tempLobby.isCourtAvailable,
+			date: this.tempLobby.selectedDate,
+			gameParts: this.tempLobby.selectedGamePart,
+			teamsFormat: this.tempLobby.selectedTeamsFormat,
+			city: this.tempLobby.selectedCity.display_name,
+			cityLatitude: this.tempLobby.selectedCity.lat,
+			cityLongitude: this.tempLobby.selectedCity.lon,
+			homeTeamContact: this.tempLobby.homeTeamContact,
+			status: 1
 		};
-		this.lobbiesService.createLobby(newLobby)
+		this.lobbiesService.createLobby(finalLobby)
 			.subscribe((response) => {
 				console.log(response);
 				this.clearForm();
@@ -129,15 +116,15 @@ export class CreateLobbyComponent implements OnInit {
 	}
 
 	clearForm() {
-		this.isCourtAvailable = null;
-		this.selectedDate = null;
-		this.selectedGamePart = null;
-		this.selectedTeamsFormat = null;
-		this.selectedCity = null;
+		this.tempLobby.isCourtAvailable = null;
+		this.tempLobby.selectedDate = null;
+		this.tempLobby.selectedGamePart = null;
+		this.tempLobby.selectedTeamsFormat = null;
+		this.tempLobby.selectedCity = null;
 	}
 
 	selectCity(selectedCity) {
-		this.selectedCity = selectedCity;
+		this.tempLobby.selectedCity = selectedCity;
 	}
 
 	onWillDismiss() {
@@ -165,5 +152,13 @@ export class CreateLobbyComponent implements OnInit {
 	prepareDateForView(date: Date): string {
 		date.setMinutes(Math.ceil(date.getMinutes() / 15) * 15);
 		return date.toJSON();
+	}
+
+	numberOnly(event): boolean {
+		const charCode = (event.which) ? event.which : event.keyCode;
+		if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+			return false;
+		}
+		return true;
 	}
 }

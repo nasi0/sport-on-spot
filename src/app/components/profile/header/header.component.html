@@ -1,28 +1,29 @@
 <ion-card>
 	<div class="profile-header-block ">
-		<ion-card class="profile-header-block-thumbnail display-flex-center-evenly" slot="start">
-			<ion-img [src]="profile.profileImageUrl"></ion-img>
-		</ion-card>
-
-
 		<ion-card class="profile-header-block-card ">
-			<ion-card-header>
-				<ion-card-title>{{profile.name}}</ion-card-title>
+			<ion-card-header class="display-flex">
+				<div class="profile-header-block-thumbnail ">
+					<ion-img [src]="profile.profileImageUrl"></ion-img>
+				</div>
+				<ion-card-title class="ion-margin-horizontal">
+					{{profile.name}}</ion-card-title>
 			</ion-card-header>
-			<ion-item lines="none">
-				<ion-label>450 friends</ion-label>
-				450 friends
-			</ion-item>
+			<ion-card-content>
+				<div>{{matchesCount}} played game(s)</div>
+			</ion-card-content>
 		</ion-card>
 
-		<ion-card class="profile-header-block-card">
+		<ion-card class="profile-header-block-card ion-padding-bottom">
 			<ion-card-header>
-				<ion-card-title>Joined Teams</ion-card-title>
+				<ion-card-title>Joined Teams ({{profile.teams.length}})</ion-card-title>
 			</ion-card-header>
+			<ion-list class="profile-header-list-teams">
+
+				<ion-item *ngFor="let team of profile.teams">
+					{{team?.name}}
+				</ion-item>
+			</ion-list>
 		</ion-card>
 	</div>
 
-	<ion-card-content>
-
-	</ion-card-content>
 </ion-card>
