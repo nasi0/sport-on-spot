@@ -41,7 +41,6 @@ export class CreateTeamComponent implements OnInit {
 		this.selectedProfiles = this.selectedProfiles.filter(function (profile) { return profile._id != deselectedProfile._id; });
 	}
 	createTeam() {
-		console.log(this.teamName);
 		if (this.teamName === undefined) { //TODO: Create check if team name is unique
 			console.log('Team Name is Undefined');
 			return;

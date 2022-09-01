@@ -105,7 +105,6 @@ export class CreateLobbyComponent implements OnInit {
 		};
 		this.lobbiesService.createLobby(finalLobby)
 			.subscribe((response) => {
-				console.log(response);
 				this.clearForm();
 				if (response) {
 					this.router.navigate(['/homepage']);

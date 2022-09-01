@@ -30,12 +30,10 @@ export class AuthService {
 		return this.registerServerCall(profile).pipe(
 			tap((response: any) => {
 				if (response.success) {
-					console.log('register service - Ok');
 					this._isLoggedIn$.next(true);
 					this.localStorageService.setItem(this.TOKEN_NAME, response.token);
 					this.localStorageService.setItem('currentProfileId', response._id);
 				} else {
-					console.log('register service - Error');
 					//Error
 				}
 			})
@@ -46,12 +44,10 @@ export class AuthService {
 		return this.loginServerCall(email, password).pipe(
 			tap((response: any) => {
 				if (response.success) {
-					console.log('login service - Ok');
 					this._isLoggedIn$.next(true);
 					this.localStorageService.setItem(this.TOKEN_NAME, response.token.toString());
 					this.localStorageService.setItem('currentProfileId', response._id);
 				} else {
-					console.log('login service - Error');
 					//Error
 				}
 			})

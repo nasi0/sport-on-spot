@@ -38,7 +38,6 @@ export class LobbyComponent implements OnInit {
 			this.homeTeam = lobby.homeTeam;
 			this.guestTeam = lobby.guestTeam;
 			this.isDataLoaded = true;
-			console.log(this.currentLobby);
 		});
 		//getTeamOfOwner
 		this.profileService.getProfile().subscribe((profile) => {
@@ -64,7 +63,6 @@ export class LobbyComponent implements OnInit {
 	}
 
 	clickChallenge() {
-		console.log('asd');
 		this.lobbiesService.challengeLobby(this.currentLobby, this.guestTeam, this.guestTeamContact)
 			.subscribe((match) => {
 				this.router.navigate(['/match', match._id]);

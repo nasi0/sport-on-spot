@@ -43,7 +43,6 @@ export class CitySuggestionComponent implements OnInit {
 	selectCity(selectedCity) {
 		this.selectedCity = selectedCity;
 		this.newSelectedCityEvent.emit(this.selectedCity);
-		console.log(this.selectedCity);
 		this.dismissModal();
 		this.clearCitySuggestions();
 	}

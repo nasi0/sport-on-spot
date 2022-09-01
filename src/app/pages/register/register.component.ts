@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
 		this.authService
 			.register(newProfile)
 			.subscribe((response) => {
-				console.log(response);
 				if (response.success) {
 					this.router.navigate(['/homepage']);
 				} else {
