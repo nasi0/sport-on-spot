@@ -7,7 +7,7 @@
 	</ion-card-header>
 
 	<ion-card-content class="team-card-content">
-		<ion-item color="light" *ngFor="let player of team.players" routerLink="/account/{{player?._id}}"
+		<ion-item color="light" *ngFor="let player of team?.players" routerLink="/account/{{player?._id}}"
 			routerLinkActive="active" ariaCurrentWhenActive="page">
 			<ion-avatar>
 				<img [src]="player.profileImageUrl || ''" />

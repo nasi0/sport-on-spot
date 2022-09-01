@@ -30,7 +30,7 @@ export class CreateTeamComponent implements OnInit {
 	}
 
 	addNewSlot() {
-		this.desiredSlots.push(undefined);
+		return this.desiredSlots.push(undefined);
 	}
 
 	selectProfile(selectedProfile: Profile) {

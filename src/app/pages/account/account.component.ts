@@ -29,8 +29,8 @@ export class AccountComponent implements OnInit {
 			this.profile = profile;
 			this.isDataLoaded = true;
 
-			this.pastMatches = profile.matches.filter(match => match['status'] > 2);
-			this.nextMatches = profile.matches.filter(match => match['status'] <= 2);
+			this.pastMatches = profile.matches?.filter(match => match['status'] > 2);
+			this.nextMatches = profile.matches?.filter(match => match['status'] <= 2);
 		});
 	}
 }

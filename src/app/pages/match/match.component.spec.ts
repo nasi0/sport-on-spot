@@ -1,4 +1,7 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { MatchComponent } from './match.component';
@@ -10,7 +13,8 @@ describe('MatchComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MatchComponent ],
-      imports: [IonicModule.forRoot()]
+	  imports: [IonicModule.forRoot(), RouterTestingModule, HttpClientModule],
+      providers: [FormBuilder, HttpClient]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchComponent);

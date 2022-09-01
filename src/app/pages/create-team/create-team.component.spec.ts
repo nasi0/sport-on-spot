@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CreateTeamComponent } from './create-team.component';
+import { Profile } from 'src/app/interfaces/profile';
 
 describe('CreateTeamComponent', () => {
   let component: CreateTeamComponent;
@@ -12,7 +13,7 @@ describe('CreateTeamComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CreateTeamComponent ],
-      imports: [IonicModule.forRoot(), RouterModule.forRoot([]), HttpClientModule],
+      imports: [IonicModule.forRoot(), HttpClientModule, RouterTestingModule ],
       providers: [HttpClient]
     }).compileComponents();
 
@@ -21,7 +22,22 @@ describe('CreateTeamComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should select profile', () => {
-   // expect(component).toBeTruthy();
+  it('should initialize component', () => {
+    expect(component).toBeTruthy();
   });
+
+  it('should add customer in selected profile', () => {
+    var selectedProfiles : Profile = {
+      email: 'test@test.com',
+      name: "Test Test"
+    };
+    expect(component.selectProfile(selectedProfiles)).toEqual(2);
+  });
+
+  it('should add slot', () => {
+    expect(component.addNewSlot()).toEqual(5);
+    expect(component.addNewSlot()).toEqual(6);
+  });
+
+
 });

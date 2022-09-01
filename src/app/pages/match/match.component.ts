@@ -39,8 +39,8 @@ export class MatchComponent implements OnInit {
 	}
 
 	isCurrentProfileOwner(match: Match) {
-		let isHomeTeamOwner = match.homeTeam.owner == this.currentProfile._id;
-		let isGuestTeamOwner = match.guestTeam.owner == this.currentProfile._id;
+		let isHomeTeamOwner = match.homeTeam?.owner == this.currentProfile._id;
+		let isGuestTeamOwner = match.guestTeam?.owner == this.currentProfile._id;
 		return isHomeTeamOwner || isGuestTeamOwner;
 	}
 

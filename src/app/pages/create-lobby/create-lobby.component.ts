@@ -53,7 +53,7 @@ export class CreateLobbyComponent implements OnInit {
 	ngOnInit() {
 		this.profileService.getProfile().subscribe((profile) => {
 			this.currentProfile = profile;
-			this.ownedTeams = profile.teams.filter(team => team.owner === profile._id);
+			this.ownedTeams = profile.teams?.filter(team => team.owner === profile._id);
 		});
 
 		this.sportsService.getAllSports().subscribe((sports) => this.allSports = sports);

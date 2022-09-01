@@ -1,12 +1,12 @@
-<ion-item ngClass="" lines="none" [routerLink]="['/match', match._id]">
+<ion-item ngClass="" lines="none" [routerLink]="['/match', match?._id]">
 	<ion-avatar class="display-flex-center" slot="start">
 		<ion-icon size="large" name="football-outline"></ion-icon>
 	</ion-avatar>
 	<div>
-		<span>{{match.homeTeam.name}}
-			{{match.homeTeamScore}}</span>
+		<span>{{match?.homeTeam.name}}
+			{{match?.homeTeamScore}}</span>
 		-
-		<span>{{match.guestTeamScore}}
-			{{match.guestTeam.name}}</span>
+		<span>{{match?.guestTeamScore}}
+			{{match?.guestTeam.name}}</span>
 	</div>
 </ion-item>

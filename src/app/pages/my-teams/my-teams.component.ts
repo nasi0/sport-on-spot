@@ -22,8 +22,8 @@ export class MyTeamsComponent implements OnInit {
 		this.activeRoute.params.subscribe(routeParams => {
 			this.profileService.getProfile().subscribe((profile) => {
 				this.myTeams = profile.teams;
-				this.ownedTeams = this.myTeams.filter(team => team.owner == profile._id);
-				this.joinedTeams = this.myTeams.filter(team => team.owner !== profile._id);
+				this.ownedTeams = this.myTeams?.filter(team => team.owner == profile._id);
+				this.joinedTeams = this.myTeams?.filter(team => team.owner !== profile._id);
 			});
 		});
 	}

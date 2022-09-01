@@ -1,4 +1,7 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { UrlSerializer } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { HomepageComponent } from './homepage.component';
@@ -10,7 +13,8 @@ describe('HomepageComponent', () => {
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			declarations: [HomepageComponent],
-			imports: [IonicModule.forRoot()]
+			imports: [IonicModule.forRoot(), HttpClientModule, RouterTestingModule ],
+			providers: [HttpClient]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(HomepageComponent);
@@ -22,7 +26,4 @@ describe('HomepageComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-	it('should have 4 buttons', () => {
-		expect(component.buttons.length).toBe(4);
-	})
 });

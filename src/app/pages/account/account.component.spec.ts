@@ -1,4 +1,6 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { AccountComponent } from './account.component';
@@ -10,7 +12,8 @@ describe('AccountComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AccountComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientModule, RouterTestingModule ],
+      providers: [HttpClient]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AccountComponent);
