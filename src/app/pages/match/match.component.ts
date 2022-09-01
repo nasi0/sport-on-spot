@@ -55,6 +55,6 @@ export class MatchComponent implements OnInit {
 		}
 		this.currentMatch.result = result;
 		this.currentMatch.status = 3;
-		this.matchService.finalizeMatch(this.currentMatch).subscribe((match) => this.currentMatch = match);
+		this.matchService.finalizeMatch(this.currentMatch).subscribe((match) => console.log('Success'));
 	};
 }

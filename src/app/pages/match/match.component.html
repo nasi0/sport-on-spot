@@ -35,9 +35,9 @@
 							</ion-input>
 						</ion-item>
 						<ion-button (click)="finalizeMatch()" class="final-result__submit">finalize</ion-button>
-						<ion-badge>{{currentMatch.lobby.homeTeamContact}}</ion-badge>
+						<ion-badge>{{currentMatch.lobby?.homeTeamContact}}</ion-badge>
 						-
-						<ion-badge>{{currentMatch.lobby.guestTeamContact}}</ion-badge>
+						<ion-badge>{{currentMatch.lobby?.guestTeamContact}}</ion-badge>
 					</div>
 					<div *ngIf="currentMatch.status == 3 || !isOwner" class="final-result">
 						{{currentMatch.homeTeamScore}}
@@ -67,10 +67,10 @@
 				<ion-item class="lobby-information__section-item" color="light" lines="none">
 					<div class="match-details">
 						<div class="match-details__title">Match details</div>
-						<div class="match-details__line">{{currentMatch.lobby.date | date: 'dd MMM HH:mm' }}</div>
-						<div class="match-details__line">{{currentMatch.lobby.gameParts}}</div>
-						<div class="match-details__line">{{currentMatch.lobby.teamsFormat}}</div>
-						<div class="match-details__line">{{currentMatch.lobby.city}}</div>
+						<div class="match-details__line">{{currentMatch.lobby?.date | date: 'dd MMM HH:mm' }}</div>
+						<div class="match-details__line">{{currentMatch.lobby?.gameParts}}</div>
+						<div class="match-details__line">{{currentMatch.lobby?.teamsFormat}}</div>
+						<div class="match-details__line">{{currentMatch.lobby?.city}}</div>
 					</div>
 				</ion-item>
 			</div>
