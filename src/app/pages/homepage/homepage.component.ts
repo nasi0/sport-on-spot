@@ -13,7 +13,7 @@ export class HomepageComponent implements OnInit {
 
 	buttons = [
 		{
-			label: 'Create Loby',
+			label: 'Create Lobby',
 			link: '/create-lobby'
 		},
 		{
