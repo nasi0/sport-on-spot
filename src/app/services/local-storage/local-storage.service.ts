@@ -36,6 +36,7 @@ export class LocalStorageService {
 
 	clearInfo() {
 		this.localStorage.removeItem('currentProfile');
+		this.localStorage.removeItem('auth_token');
 		this._currentProfile.next(null);
 	}
 

@@ -1,42 +1,28 @@
-<div>
-	<ion-header [translucent]="true">
-		<ion-toolbar>
-			<ion-buttons slot="start">
-				<ion-menu-button></ion-menu-button>
-			</ion-buttons>
-			<ion-title>My Account</ion-title>
-			<ion-buttons slot="end">
-				<ion-button size="large" [routerLink]="['/account']">
-					<ion-icon name="person"></ion-icon>
-				</ion-button>
-			</ion-buttons>
-		</ion-toolbar>
-	</ion-header>
+<app-header pageTitle="My Account"></app-header>
 
-	<ion-content [fullscreen]="true">
-		<div class="page-content-wrapper" *ngIf="isDataLoaded">
-			<app-profile-header [profile]="profile"></app-profile-header>
-			<ion-card>
-				<ion-card-header>
-					<ion-card-title>Next Games ({{nextMatches?.length}})</ion-card-title>
-				</ion-card-header>
-				<ion-card-content class="ion-no-padding">
-					<div *ngFor="let match of nextMatches">
-						<app-matchrow [match]="match"></app-matchrow>
-					</div>
-				</ion-card-content>
-			</ion-card>
+<ion-content [fullscreen]="true">
+	<div class="page-content-wrapper" *ngIf="isDataLoaded">
+		<app-profile-header [profile]="profile"></app-profile-header>
+		<ion-card>
+			<ion-card-header>
+				<ion-card-title>Next Games ({{nextMatches?.length}})</ion-card-title>
+			</ion-card-header>
+			<ion-card-content class="ion-no-padding">
+				<div *ngFor="let match of nextMatches">
+					<app-matchrow [match]="match"></app-matchrow>
+				</div>
+			</ion-card-content>
+		</ion-card>
 
-			<ion-card>
-				<ion-card-header>
-					<ion-card-title>Finished Games ({{pastMatches?.length}})</ion-card-title>
-				</ion-card-header>
-				<ion-card-content class="ion-no-padding">
-					<div *ngFor="let match of pastMatches">
-						<app-matchrow [match]="match"></app-matchrow>
-					</div>
-				</ion-card-content>
-			</ion-card>
-		</div>
-	</ion-content>
-</div>
+		<ion-card>
+			<ion-card-header>
+				<ion-card-title>Finished Games ({{pastMatches?.length}})</ion-card-title>
+			</ion-card-header>
+			<ion-card-content class="ion-no-padding">
+				<div *ngFor="let match of pastMatches">
+					<app-matchrow [match]="match"></app-matchrow>
+				</div>
+			</ion-card-content>
+		</ion-card>
+	</div>
+</ion-content>

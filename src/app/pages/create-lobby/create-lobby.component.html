@@ -1,16 +1,4 @@
-<ion-header [translucent]="true">
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title> Create Lobby </ion-title>
-		<ion-buttons slot="end">
-			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person"></ion-icon>
-			</ion-button>
-		</ion-buttons>
-	</ion-toolbar>
-</ion-header>
+<app-header pageTitle="Create Lobby"></app-header>
 
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper">
@@ -62,9 +50,10 @@
 						<ion-icon class="create-lobby-icon" name="calendar-outline" color="medium">
 						</ion-icon>
 					</ion-label>
-					<ion-input value="{{ tempLobby.selectedDate | date: 'dd MMM HH:mm' }}" id="date"
+					<ion-input value="{{ tempLobby.selectedDate | date: 'dd MMM HH:mm' }}" id="date-{{randomId}}"
 						placeholder="Select Date" class="ion-text-center " color="dark"></ion-input>
-					<ion-modal trigger="date" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
+					<ion-modal trigger="date-{{randomId}}" (willDismiss)="onWillDismiss()"
+						(willPresent)="onWillPresent()">
 						<ng-template>
 							<ion-header>
 								<ion-toolbar>

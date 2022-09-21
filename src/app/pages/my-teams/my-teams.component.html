@@ -1,16 +1,5 @@
-<ion-header [translucent]="true">
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title> My Teams </ion-title>
-		<ion-buttons slot="end">
-			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person"></ion-icon>
-			</ion-button>
-		</ion-buttons>
-	</ion-toolbar>
-</ion-header>
+<app-header pageTitle="My Teams"></app-header>
+
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper">
 		<h3 class="my-teams__section-title">Owned teams ({{ownedTeams?.length}})</h3>

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 			.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
 			.subscribe((response) => {
 				if (response.success) {
-					this.router.navigate(['/homepage']);
+					this.router.navigate(['/account']);
 				} else {
 					this.openToast(response.message);
 				}

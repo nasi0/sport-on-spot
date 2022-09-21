@@ -12,13 +12,16 @@ export class CitySuggestionComponent implements OnInit {
 	@Input() selectedCity: any;
 	selectedCityModel: any;
 	suggestedCities: any;
+	randomId: any;
 
 	constructor(
 		private modalCtrl: ModalController,
 		private locationService: LocationService
 	) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		this.randomId = Math.ceil(Math.random() * 100);
+	}
 
 	onWillDismiss() {
 		if (window.history.state.modal) {
@@ -35,8 +38,10 @@ export class CitySuggestionComponent implements OnInit {
 	}
 
 	selectedCityChanged(newValue) {
-		if (newValue.length >= 3) {
-			this.locationService.searchCity(newValue).subscribe((suggestedCities) => this.suggestedCities = suggestedCities);
+		if (newValue.length >= 2) {
+			this.suggestedCities = this.locationService.searchCity(newValue);
+		} else {
+			this.suggestedCities = [];
 		}
 	}
 

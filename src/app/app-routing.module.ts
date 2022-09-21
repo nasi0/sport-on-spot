@@ -10,6 +10,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LobbyComponent } from './pages/lobby/lobby.component';
 import { MatchComponent } from './pages/match/match.component';
+import { AccountComponent } from './pages/account/account.component';
 import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
 
 const routes: Routes = [
@@ -24,7 +25,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'account',
-		loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule),
+		component: AccountComponent,
 		canActivate: [IsAuthenticatedGuard]
 	},
 	{
@@ -68,7 +69,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+		RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, onSameUrlNavigation: 'reload'})
 	],
 	exports: [RouterModule]
 })

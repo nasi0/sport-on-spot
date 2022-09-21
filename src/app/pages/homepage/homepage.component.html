@@ -1,17 +1,4 @@
-<ion-header [translucent]="true">
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title> Homepage </ion-title>
-		<ion-buttons slot="end">
-			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person"></ion-icon>
-			</ion-button>
-		</ion-buttons>
-	</ion-toolbar>
-</ion-header>
-
+<app-header pageTitle="Homepage"></app-header>
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper homepage-content__wrapper ">
 		<div class="homepage-content__header">
@@ -26,7 +13,7 @@
 			<h3 class="homepage-content__content__title">What's next?</h3>
 			<div class="homepage-content__card-wrapper display-flex-center flex-wrap">
 				<ion-button [routerLink]="[button.link]" fill="outline"
-					class="homepage-content__card ion-blurry-background ion-text-center ion-no-margin"
+					class="homepage-content__card ion-blurry-background ripple-parent ion-text-center ion-no-margin"
 					*ngFor="let button of buttons">
 					<ion-label class="homepage-content__label">{{button.label}}</ion-label>
 				</ion-button>

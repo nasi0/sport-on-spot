@@ -3,11 +3,11 @@
 		<ion-icon class="create-lobby-icon" name="location-outline" color="medium">
 		</ion-icon>
 	</ion-label>
-	<ion-input [ngModel]="selectedCity?.display_name" (ngModelChange)="selectedCityChanged($event)" id="selectCity"
-		placeholder="Start typing city" class="ion-text-center " color="dark">
+	<ion-input [ngModel]="selectedCity" (ngModelChange)="selectedCityChanged($event)" id="selectCity-{{randomId}}"
+		placeholder="Start typing city" class="ion-text-center" color="dark">
 	</ion-input>
 
-	<ion-modal trigger="selectCity" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
+	<ion-modal trigger="selectCity-{{randomId}}" (willDismiss)="onWillDismiss()" (willPresent)="onWillPresent()">
 		<ng-template>
 			<ion-header>
 				<ion-toolbar>
@@ -25,8 +25,8 @@
 							(ngModelChange)="selectedCityChanged($event)">
 						</ion-input>
 					</ion-item>
-					<ion-item (click)="selectCity(city)" *ngFor="let city of suggestedCities">
-						<ion-label>{{city.display_name}}</ion-label>
+					<ion-item button (click)="selectCity(city)" *ngFor="let city of suggestedCities">
+						<ion-label>{{city}}</ion-label>
 					</ion-item>
 				</ion-list>
 				<div class="display-flex-center ion-margin-top">

@@ -1,4 +1,3 @@
-
 .profile-header-list-teams {
 	max-height: 130px;
 	overflow: auto;
@@ -17,4 +16,11 @@
 		max-width: 200px;
 	}
 
+	&-name {
+		font-size: 24px;
+	}
+
+	&-played-games {
+		margin-bottom: 8px;
+	}
 }

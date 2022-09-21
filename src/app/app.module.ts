@@ -28,11 +28,16 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LobbyComponent } from './pages/lobby/lobby.component';
 import { CitySuggestionComponent } from './components/lobby/city-suggestion/city-suggestion.component';
 import { MatchComponent } from './pages/match/match.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AccountComponent } from './pages/account/account.component';
+import { ProfileHeaderComponent } from './components/profile/header/header.component';
+import { MatchrowComponent } from './components/profile/matchrow/matchrow.component';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		AccountComponent,
 		HomepageComponent,
 		CreateTeamComponent,
 		SearchProfileComponent,
@@ -45,7 +50,10 @@ import { MatchComponent } from './pages/match/match.component';
 		RegisterComponent,
 		LobbyComponent,
 		CitySuggestionComponent,
-		MatchComponent
+		MatchComponent,
+		HeaderComponent,
+		ProfileHeaderComponent,
+		MatchrowComponent
 	],
 	imports: [
 		BrowserModule,

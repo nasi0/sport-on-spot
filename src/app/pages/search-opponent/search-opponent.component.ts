@@ -40,13 +40,14 @@ export class SearchOpponentComponent implements OnInit {
 
 	searchOpponents() {
 		this.lobbiesService.searchLobby(this.search).subscribe((lobbies) => {
-			this.foundLobbies = lobbies
+			this.foundLobbies = lobbies;
+			this.foundLobbies = this.foundLobbies.filter((lobby) => lobby['status'] === 1);
 		});
 	}
 
 	selectCity(newCity) {
 		this.selectedCity = newCity;
-		this.search.city = this.selectedCity?.display_name; //TODO: Broken when we are directly entering city
+		this.search.city = this.selectedCity; //TODO: Broken when we are directly entering city
 	}
 
 	public customFormatter(value: number) {

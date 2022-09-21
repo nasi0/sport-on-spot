@@ -1,16 +1,4 @@
-<ion-header [translucent]="true">
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title> Match </ion-title>
-		<ion-buttons slot="end">
-			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person"></ion-icon>
-			</ion-button>
-		</ion-buttons>
-	</ion-toolbar>
-</ion-header>
+<app-header pageTitle="Match"></app-header>
 
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper" *ngIf="isDataLoaded">

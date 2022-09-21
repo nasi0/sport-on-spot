@@ -1,16 +1,5 @@
-<ion-header [translucent]="true">
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title> Search Opponent </ion-title>
-		<ion-buttons slot="end">
-			<ion-button size="large" [routerLink]="['/account']">
-				<ion-icon name="person"></ion-icon>
-			</ion-button>
-		</ion-buttons>
-	</ion-toolbar>
-</ion-header>
+<app-header pageTitle="Search Opponent"></app-header>
+
 <ion-content [fullscreen]="true">
 	<div class="page-content-wrapper">
 		<ion-card>
@@ -57,10 +46,10 @@
 						<ion-icon class="search-opponent__icon" name="stopwatch-outline"></ion-icon>{{lobby.gameParts ||
 						'Any'}}
 					</div>
-					<div class="found-team-stats display-flex-center">
+					<!-- <div class="found-team-stats display-flex-center">
 						<ion-icon class="search-opponent__icon" name="stats-chart-outline"></ion-icon>
 						{{lobby.homeTeam.winsCount}} {{lobby.homeTeam.drawsCount}} {{lobby.homeTeam.losesCount}}
-					</div>
+					</div> -->
 					<div class="found-team-stats display-flex-center found-team-stats__first-item">
 
 						<ion-icon class="search-opponent__icon" name="time-outline"></ion-icon>

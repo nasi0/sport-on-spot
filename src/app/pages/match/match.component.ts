@@ -50,7 +50,7 @@ export class MatchComponent implements OnInit {
 		this.currentMatch.guestTeamScore = this.guestTeamScore || 0;
 		if ( this.currentMatch.homeTeamScore > this.currentMatch.guestTeamScore) {
 			result = 1;
-		} else if (this.currentMatch.homeTeamScore > this.currentMatch.guestTeamScore) {
+		} else if (this.currentMatch.homeTeamScore < this.currentMatch.guestTeamScore) {
 			result = 2;
 		}
 		this.currentMatch.result = result;

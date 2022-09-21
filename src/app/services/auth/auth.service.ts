@@ -54,6 +54,11 @@ export class AuthService {
 		);
 	}
 
+	logout() {
+		this._isLoggedIn$.next(false);
+		this.localStorageService.clearInfo();
+	}
+
 	private registerServerCall(profile: Profile) {
 		const url = `${this.apiUrl}/register/`;
 		return this.http.post(url, profile);

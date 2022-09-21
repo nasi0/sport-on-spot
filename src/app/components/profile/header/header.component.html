@@ -5,11 +5,22 @@
 				<div class="profile-header-block-thumbnail ">
 					<ion-img [src]="profile?.profileImageUrl"></ion-img>
 				</div>
-				<ion-card-title class="ion-margin-horizontal">
-					{{profile?.name}}</ion-card-title>
+				<ion-card-title
+					class="ion-no-margin ion-margin-horizontal profile-header-block-name display-flex ion-align-items-center">
+					{{profile?.name}}
+				</ion-card-title>
 			</ion-card-header>
 			<ion-card-content>
-				<div>{{matchesCount}} played game(s)</div>
+				<div class=" profile-header-block-played-games">{{matchesCount}} played game(s)
+				</div>
+				<ion-badge color="success">{{winsCount}} win(s)</ion-badge>
+				<ion-badge class="ion-margin-horizontal" color="warning">{{drawsCount}} draw(s)</ion-badge>
+				<ion-badge color="danger">{{matchesCount - (winsCount + drawsCount)}} lose(s)</ion-badge>
+
+				<div class="display-flex ion-align-items-center">Most played game:<ion-icon size="large"
+						name="football-outline">
+					</ion-icon>
+				</div>
 			</ion-card-content>
 		</ion-card>
 

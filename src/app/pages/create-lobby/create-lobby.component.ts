@@ -14,6 +14,7 @@ import { Team } from 'src/app/interfaces/Team';
 	styleUrls: ['./create-lobby.component.scss'],
 })
 export class CreateLobbyComponent implements OnInit {
+	randomId: any;
 	currentProfile: any;
 	dateNow: any = new Date();
 	ownedTeams: Team[];
@@ -59,6 +60,7 @@ export class CreateLobbyComponent implements OnInit {
 		this.sportsService.getAllSports().subscribe((sports) => this.allSports = sports);
 
 		this.dateNow = this.prepareDateForView(this.dateNow);
+		this.randomId = Math.ceil(Math.random() * 100);
 	}
 
 	@HostListener('window:popstate', ['$event'])
@@ -97,9 +99,7 @@ export class CreateLobbyComponent implements OnInit {
 			date: this.tempLobby.selectedDate,
 			gameParts: this.tempLobby.selectedGamePart,
 			teamsFormat: this.tempLobby.selectedTeamsFormat,
-			city: this.tempLobby.selectedCity.display_name,
-			cityLatitude: this.tempLobby.selectedCity.lat,
-			cityLongitude: this.tempLobby.selectedCity.lon,
+			city: this.tempLobby.selectedCity,
 			homeTeamContact: this.tempLobby.homeTeamContact,
 			status: 1
 		};

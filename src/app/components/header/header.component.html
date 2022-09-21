@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> {{pageTitle}} </ion-title>
+		<ion-buttons *ngIf="hideProfileIcon !== 'true'" slot="end">
+			<ion-button id="hover-trigger-{{randomId}}" size="large">
+				<ion-icon name="person"></ion-icon>
+			</ion-button>
+			<ion-popover *ngIf="isLoggedIn" trigger="hover-trigger-{{randomId}}" triggerAction="click"
+				show-backdrop="false" dismissOnSelect="true">
+				<ng-template>
+					<ion-item [routerLink]="['/account']">
+						<ion-icon slot="start" [icon]="'person'"></ion-icon>
+						<ion-label>My profile</ion-label>
+					</ion-item>
+					<ion-item button (click)="logout()">
+						<ion-icon slot="start" [icon]="'log-out'"></ion-icon>
+						<ion-label>Log-out</ion-label>
+					</ion-item>
+				</ng-template>
+			</ion-popover>
+			<ion-popover *ngIf="!isLoggedIn" trigger="hover-trigger-{{randomId}}" triggerAction="click"
+				show-backdrop="false" dismissOnSelect="true">
+				<ng-template>
+					<ion-item [routerLink]="['/login']">
+						<ion-icon slot="start" [icon]="'log-in'"></ion-icon>
+						<ion-label>Login</ion-label>
+					</ion-item>
+				</ng-template>
+			</ion-popover>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>

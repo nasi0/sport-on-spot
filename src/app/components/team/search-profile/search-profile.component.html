@@ -5,7 +5,7 @@
 	<div>
 		<ion-list class="search-profile-results ion-no-padding"
 			[ngClass]="inputText.length > 1 ? 'active-results' : 'not-active-results'">
-			<ion-item *ngFor="let profile of profiles | filter: inputText" (click)="onClick(profile)">
+			<ion-item button *ngFor="let profile of profiles | filter:inputText" (click)="onClick(profile)">
 				<ion-avatar>
 					<img [src]="profile.profileImageUrl" />
 				</ion-avatar>
